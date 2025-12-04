@@ -1,5 +1,12 @@
-# yuriSimonov
+# [yuriSimonov](https://www.youtube.com/@Yuri_Simonov)
 
-**MoGo** is the big responsive web application(SPA) where were used flex, google fonts, slider slick, jQuery library, placehold. [GitHub Page](https://andriistoliarov.github.io/layouts/brainsCloud/moGo/index.html)
+Привет, дружище!
+Рад, что ты зашел(ла) на мой канал! Здесь я делюсь своими практическими наработками в направлении Web-разработки. Если тебе интересен такой контент, то смело подписывайся на канал :)
 
-**PersonalBlog** is the multi-page responsive web application with modal windows where were used SASS, gulp, system fonts, reset file, flex, grid, tag iframe, photo and video adaptive style, masks, picture with source property, mixin, property flex-grow for block growth, hide text in the and of the line and add ellipsis, adaptive text input fields based on height. [GitHub Page](https://andriistoliarov.github.io/layouts/brainsCloud/personalBlog/dist/index.html)
+![logo](data/yuriSimonovLogo.jpg)
+
+## basicCourse
+
+Уроки по Angular для начинающих. Здесь вы найдете много важной информации как по самому фреймворку Angular, так и по библиотеке RxJS.
+
+Ссылка на видео курс: [YouTube](https://www.youtube.com/watch?v=fcsg0RzKrm8&list=PL2bJ6t_D6_KSSiM2Y8T32-5KgaNzzS4R6&index=1)
