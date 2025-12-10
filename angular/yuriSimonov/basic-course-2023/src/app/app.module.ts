@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.modulee';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CutTextPipe } from './pipes/cut-text.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CutTextPipe],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
