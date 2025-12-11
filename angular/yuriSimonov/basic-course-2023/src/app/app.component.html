@@ -1,4 +1,4 @@
-<h1>{{ title | lowercase }}</h1>
+<!-- <h1>{{ title | lowercase }}</h1>
 <h1>{{ title | uppercase }}</h1>
 <h1>{{ 'какая-то строка' | uppercase }}</h1>
 <h1>{{ 'какая-то строка вместе с переменной title' | titlecase }}</h1>
@@ -18,16 +18,16 @@
 
 <a href="#" [title]="tooltip">ссылка куда-то</a>
 <br>
-<a href="#" bind-title="tooltip">ссылка куда-то bind</a>
+<a href="#" bind-title="tooltip">ссылка куда-то bind</a> -->
 
 <!-- стили -->
 
-<p class="red">Красный цвет</p>
+<!-- <p class="red">Красный цвет</p>
 <p style="color: red">Красный цвет</p>
-<!-- ================================================ -->
+
 <p [class]="cssClass">Красный цвет</p>
 <p [style]="inLineStyle">Красный цвет</p>
-<!-- ================================================ -->
+
 <p [style.width]="'50%'">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque nobis saepe nisi commodi omnis. Fuga aut optio
   recusandae itaque, quibusdam aliquid, ullam explicabo sit nobis earum, autem asperiores at obcaecati.</p>
 
@@ -40,3 +40,12 @@
 
 <p>{{"5 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quibusdam autem quia modi accusamus labore distinctio exercitationem? Voluptatibus, minus totam? Corporis repellat voluptas beatae doloremque autem distinctio tenetur soluta deleniti?"
   | cutText : 10 }}</p>
+
+<p>{{ ageOfUsers | sortData: "age" | json }}</p> -->
+
+<!-- lesson 07 -->
+<button [style.color]="color" (click)="changeColor('red')">Кнопка</button>
+<!-- <button [style.color]="color" on-click="changeColor('red')">Кнопка</button> -->
+<p [style.color]="color" (click)="color = 'yellow'">Параграф</p>
+
+<input type="text" (input)="checkCurrentValue($event)" (keydown.control.shift.enter)="this.color = 'pink'">

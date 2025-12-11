@@ -29,4 +29,27 @@ export class AppComponent {
   someNumber = 50;
 
   someDate = new Date();
+
+  // lesson 06
+  ageOfUsers = [{ age: 20 }, { age: 26 }, { age: 22 }];
+
+  constructor() {
+    setTimeout(() => {
+      // this.ageOfUsers.push({ age: 16 });
+      this.ageOfUsers = [...this.ageOfUsers, { age: 16 }];
+    }, 3000);
+  }
+
+  // lesson  07
+  color = 'green';
+
+  changeColor(newColor: string) {
+    this.color = newColor;
+  }
+
+  checkCurrentValue(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    console.log('event :>> ', target.value);
+  }
 }
