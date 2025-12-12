@@ -49,3 +49,11 @@
 <p [style.color]="color" (click)="color = 'yellow'">Параграф</p>
 
 <input type="text" (input)="checkCurrentValue($event)" (keydown.control.shift.enter)="this.color = 'pink'">
+
+<!-- lesson 08: Декораторы Input, Output | Двустороннее связывание -->
+<!-- <app-child [childColor]="color" [name]="name" (nameChange)="setNewName($event)"></app-child> -->
+<app-child [childColor]="color" [(name)]="parentName"></app-child>
+
+<p>Имя родительского компонента: {{ parentName }}</p>
+
+<button (click)="setNewName('имя, измененное с помощью родителя')">Родительская кнопка</button>

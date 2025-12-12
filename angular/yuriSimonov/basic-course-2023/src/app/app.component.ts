@@ -11,6 +11,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'basic course 2023';
+  parentName: string = 'hello, world!';
 
   user = {
     name: 'Yura',
@@ -48,8 +49,13 @@ export class AppComponent {
   }
 
   checkCurrentValue(event: Event) {
+    //! чтобы typescript не ругался на value
     const target = event.target as HTMLInputElement;
 
     console.log('event :>> ', target.value);
+  }
+
+  setNewName(newName: string) {
+    this.parentName = newName;
   }
 }
