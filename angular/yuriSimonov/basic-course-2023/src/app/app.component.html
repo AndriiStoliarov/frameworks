@@ -43,17 +43,39 @@
 
 <p>{{ ageOfUsers | sortData: "age" | json }}</p> -->
 
-<!-- lesson 07 -->
+<!-- lesson 07
 <button [style.color]="color" (click)="changeColor('red')">Кнопка</button>
-<!-- <button [style.color]="color" on-click="changeColor('red')">Кнопка</button> -->
+<button [style.color]="color" on-click="changeColor('red')">Кнопка</button>
 <p [style.color]="color" (click)="color = 'yellow'">Параграф</p>
 
-<input type="text" (input)="checkCurrentValue($event)" (keydown.control.shift.enter)="this.color = 'pink'">
+<input type="text" (input)="checkCurrentValue($event)" (keydown.control.shift.enter)="this.color = 'pink'"> -->
 
-<!-- lesson 08: Декораторы Input, Output | Двустороннее связывание -->
-<!-- <app-child [childColor]="color" [name]="name" (nameChange)="setNewName($event)"></app-child> -->
+<!-- lesson 08: Декораторы Input, Output | Двустороннее связывание
+<app-child [childColor]="color" [name]="name" (nameChange)="setNewName($event)"></app-child>
 <app-child [childColor]="color" [(name)]="parentName"></app-child>
 
 <p>Имя родительского компонента: {{ parentName }}</p>
 
-<button (click)="setNewName('имя, измененное с помощью родителя')">Родительская кнопка</button>
+<button (click)="setNewName('имя, измененное с помощью родителя')">Родительская кнопка</button> -->
+
+<!-- lesson 09 -->
+<!-- <app-child>
+  <hr>
+  <p style="background-color: lightcoral;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates!</p>
+  <div style="background-color: lightgoldenrodyellow;" someAttribute>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+    voluptates!</div>
+  <article style="background-color: lightgreen;" class="some-css-class">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+    voluptates!</article>
+  <hr>
+  <hr>
+  <div class="example">
+    <span>Цвет из родителя {{ color }}</span>
+  </div>
+  <hr>
+</app-child> -->
+
+<app-child>
+  <app-ng-content-example></app-ng-content-example>
+  <p>text</p>
+  Lorem ipsum dolor sit amet.
+</app-child>
