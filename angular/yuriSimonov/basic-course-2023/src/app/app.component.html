@@ -72,10 +72,27 @@
     <span>Цвет из родителя {{ color }}</span>
   </div>
   <hr>
-</app-child> -->
+</app-child>
 
 <app-child>
   <app-ng-content-example></app-ng-content-example>
   <p>text</p>
   Lorem ipsum dolor sit amet.
-</app-child>
+</app-child> -->
+
+<!-- lesson 10 -->
+<p>Первый параграф!</p>
+
+<ng-container *ngTemplateOutlet="test; context: { first: 'Hello', $implicit: 'World', someText: '!' }">
+  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi nesciunt excepturi cumque magnam ea itaque soluta magni, fugit beatae
+    iure maxime unde provident nobis odit nam a saepe voluptatibus eligendi!</span>
+</ng-container>
+
+<p>Третий параграф!</p>
+
+<ng-template #test let-item let-firstItem="first" let-someText="someText">
+  <p>Второй параграф!</p>
+  <p>{{ firstItem }}</p>
+  <p>{{ item }}</p>
+  <p>{{ someText }}</p>
+</ng-template>
