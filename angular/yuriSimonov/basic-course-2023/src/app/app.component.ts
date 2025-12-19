@@ -47,24 +47,25 @@ export class AppComponent {
   //   this.parentName = newName;
   // }
   // lesson  11
-  toggler: boolean = true;
-  str: string = '';
+  // toggler: boolean = true;
+  // str: string = '';
+  // arr: any[] = ['text', 123, true, [1, 'abc'], NaN, Symbol];
+  // obj: any = {
+  //   first: {
+  //     second: {
+  //       third: {
+  //         age: 11,
+  //         name: 'Mike',
+  //       },
+  //     },
+  //   },
+  // };
+  // someTrackByMethod(index: number, item: any) {
+  //   console.log(1);
+  //   return item;
+  // }
+  //* lesson 13
+  color: string = 'orange';
 
-  arr: any[] = ['text', 123, true, [1, 'abc'], NaN, Symbol];
-
-  obj: any = {
-    first: {
-      second: {
-        third: {
-          age: 11,
-          name: 'Mike',
-        },
-      },
-    },
-  };
-
-  someTrackByMethod(index: number, item: any) {
-    console.log(1);
-    return item;
-  }
+  cssProperties = { color: 'orange', background: 'green' };
 }

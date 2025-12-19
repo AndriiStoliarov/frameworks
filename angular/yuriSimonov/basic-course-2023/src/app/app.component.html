@@ -219,6 +219,36 @@
   <span *ngIf="evenItem">{{ item }}</span>
 </div> -->
 
-<div *ngFor="let item of arr | slice : 1 : 4">
+<!-- <div *ngFor="let item of arr | slice : 1 : 4">
   <span>{{ item }}</span>
-</div>
+</div> -->
+
+<!-- lesson 13 ---------------------------------------->
+<!-- <p ngClass="aqua">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [ngClass]="'aqua'">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [ngClass]="color">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [ngClass]="['aqua', 'red', color, 'green']">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [ngClass]="{ 'green': true, color: false }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+
+<p [class]="{ 'green red pink': true, color: false }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p style="background: red">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+
+<p [style]="'background: green'">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [ngStyle]="{ color: color, background: 'black' }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+<!-- <p [ngStyle]="{ color, background1: 'black' }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [ngStyle]="cssProperties">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- <p [style]="cssProperties">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+
+<p [style.font-size.px]="20">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+
+<p [ngStyle]="{ 'font-size.px': 32 }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
