@@ -123,7 +123,7 @@
   <span *ngSwitchDefault>{{ item }}</span>
 </div> -->
 
-<!-- lesson 12 -------------------------------------------------------------->
+<!-- lesson 12 ------------------------------------------>
 <!-- <button (click)="toggler = !toggler">Кнопка</button>
 
 <p *ngIf="toggler">
@@ -247,8 +247,131 @@
 
 <!-- <p [style]="cssProperties">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
 
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+<!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
 
-<p [style.font-size.px]="20">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+<!-- <p [style.font-size.px]="20">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
 
-<p [ngStyle]="{ 'font-size.px': 32 }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p>
+<!-- <p [ngStyle]="{ 'font-size.px': 32 }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
+
+<!-- lesson 15 ------------------------------------------>
+<button (click)="toggler = !toggler">Кнопка</button>
+
+<!-- <p *ngIf="toggler">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, provident?
+</p>
+
+@if (toggler) {
+<p class="aqua">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, provident?
+</p>
+} -->
+
+<!-- <p *ngIf="toggler; else test">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, deserunt.
+</p>
+
+<ng-template #test>
+  <p>Текст из ng-template</p>
+</ng-template>
+
+@if (toggler) {
+<p class="aqua">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, deserunt.
+</p>
+} @else {
+<p class="aqua">Текст из else</p>
+} -->
+
+<!-- @if (toggler) {
+<p class="aqua">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, deserunt.
+</p>
+} @else if (true) {
+<p class="aqua">Еще одно условие</p>
+} @else {
+<p class="aqua">Текст из else</p>
+} -->
+
+<!-- <div *ngFor="let item of arr; trackBy: someTrackByMethod">
+  <span>{{ item }}</span>
+</div>
+
+@for (item of arr; track item; let i = $index) {
+<div class="aqua">
+  <span>{{ i }}</span>
+</div>
+}
+
+<hr> -->
+
+<!-- @for (item of arr; track item; let parrentIndex = $index) { @for (item of arr;
+track item; let childIndex = $index) {
+<div class="aqua">
+  <span>{{ childIndex }}</span>
+</div>
+} }
+
+<hr /> -->
+
+<!-- @for (item of []; track item) {
+<div class="aqua">
+  <span>{{ $index }}</span>
+</div>
+} @empty {
+<p class="aqua">Массив пустой</p>
+}
+
+<hr /> -->
+
+@for (item of arr; track $index) {
+<div class="aqua">
+  @switch (item) { @case (123) {
+  <i>{{ item }}</i>
+  } @case (true) {
+  <b>{{ item }}</b>
+  } @default {
+  <span>{{ item }}</span>
+  } }
+</div>
+}
+
+<!-- <ng-container *ngIf="true">
+  <div *ngFor="let item of arr">
+    <span>{{ item }}</span>
+  </div>
+</ng-container> -->
+
+<!-- <p *ngIf="toggler; then test; else second">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, provident?
+</p>
+
+<button (click)="toggler = !toggler">Кнопка</button>
+
+<ng-template #test>
+  <div>Текст из ng-template</div>
+</ng-template>
+
+<ng-template #second>
+  <span>Текст из второго элемента ng-template</span>
+</ng-template>
+
+<!-- <button (click)="toggler = !toggler">Кнопка</button>
+
+<p *ngIf="toggler ? true : false">Какой-то текст</p>
+<p *ngIf="toggler && true">Какой-то текст</p>
+<p *ngIf="false || toggler">Какой-то текст</p> -->
+
+<!-- <p *ngIf="arr?.[0]">Есть такой элемент в массиве: {{ arr[0] }}</p> -->
+
+<!-- <ng-container *ngIf="obj.first.second.third as info">
+  <p>Имя: {{ info.name }}</p>
+  <p>Возраст: {{ info.age }}</p>
+</ng-container> -->
+
+<!-- <div *ngFor="let item of arr; even as evenItem; trackBy: someTrackByMethod">
+  <span *ngIf="evenItem">{{ item }}</span>
+</div> -->
+
+<!-- <div *ngFor="let item of arr | slice : 1 : 4">
+  <span>{{ item }}</span>
+</div> -->

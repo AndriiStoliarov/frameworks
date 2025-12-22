@@ -65,7 +65,16 @@ export class AppComponent {
   //   return item;
   // }
   //* lesson 13
-  color: string = 'orange';
+  // color: string = 'orange';
+  // cssProperties = { color: 'orange', background: 'green' };
+  //* lesson 15
+  toggler: boolean = true;
 
-  cssProperties = { color: 'orange', background: 'green' };
+  arr: any[] = ['text', 123, true, [1, 'abc'], NaN, Symbol];
+
+  someTrackByMethod(index: number, item: any) {
+    console.log(1);
+
+    return item;
+  }
 }
