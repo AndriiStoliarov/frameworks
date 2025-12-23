@@ -254,7 +254,7 @@
 <!-- <p [ngStyle]="{ 'font-size.px': 32 }">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, repellat!</p> -->
 
 <!-- lesson 15 ------------------------------------------>
-<button (click)="toggler = !toggler">Кнопка</button>
+<!-- <button (click)="toggler = !toggler">Кнопка</button> -->
 
 <!-- <p *ngIf="toggler">
   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, provident?
@@ -323,7 +323,7 @@ track item; let childIndex = $index) {
 
 <hr /> -->
 
-@for (item of arr; track $index) {
+<!-- @for (item of arr; track $index) {
 <div class="aqua">
   @switch (item) { @case (123) {
   <i>{{ item }}</i>
@@ -333,7 +333,7 @@ track item; let childIndex = $index) {
   <span>{{ item }}</span>
   } }
 </div>
-}
+} -->
 
 <!-- <ng-container *ngIf="true">
   <div *ngFor="let item of arr">
@@ -375,3 +375,6 @@ track item; let childIndex = $index) {
 <!-- <div *ngFor="let item of arr | slice : 1 : 4">
   <span>{{ item }}</span>
 </div> -->
+
+<!-- lesson 16 --------------------------------->
+<app-child [title]="title" [name]="name" [obj]="obj"></app-child>

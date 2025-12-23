@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { first } from 'rxjs';
@@ -68,13 +68,23 @@ export class AppComponent {
   // color: string = 'orange';
   // cssProperties = { color: 'orange', background: 'green' };
   //* lesson 15
-  toggler: boolean = true;
+  // toggler: boolean = true;
+  // arr: any[] = ['text', 123, true, [1, 'abc'], NaN, Symbol];
+  // someTrackByMethod(index: number, item: any) {
+  //   console.log(1);
+  //   return item;
+  // }
+  //* lesson 16
+  title: string = 'Заголовок';
+  name: string = 'Имя';
 
-  arr: any[] = ['text', 123, true, [1, 'abc'], NaN, Symbol];
+  obj = { age: 12 };
 
-  someTrackByMethod(index: number, item: any) {
-    console.log(1);
-
-    return item;
+  constructor() {
+    setTimeout(() => {
+      this.title = 'Другой заголовок';
+      // this.obj.age = 10;
+      this.obj = { ...this.obj, age: 10 };
+    }, 3000);
   }
 }
