@@ -77,7 +77,7 @@ export class AppComponent {
   //* lesson 16
   title: string = 'Заголовок';
   name: string = 'Имя';
-
+  toggler: boolean = true;
   obj = { age: 12 };
 
   constructor() {

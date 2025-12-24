@@ -377,4 +377,8 @@ track item; let childIndex = $index) {
 </div> -->
 
 <!-- lesson 16 --------------------------------->
+@if (toggler) {
 <app-child [title]="title" [name]="name" [obj]="obj"></app-child>
+}
+
+<button (click)="toggler = !toggler">Toggler</button>
