@@ -377,8 +377,31 @@ track item; let childIndex = $index) {
 </div> -->
 
 <!-- lesson 16 --------------------------------->
-@if (toggler) {
+<!-- @if (toggler) {
 <app-child [title]="title" [name]="name" [obj]="obj"></app-child>
 }
 
-<button (click)="toggler = !toggler">Toggler</button>
+<button (click)="toggler = !toggler">Toggler</button> -->
+
+<!-- lesson 17 --------------------------------->
+<p #paragraph>Просто параграф</p>
+
+<ng-template #template>
+  <p>Содержимое внутри ng-template</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="template"></ng-container>
+
+<!-- <app-child #component>Lorem, ipsum dolor.</app-child> -->
+<!-- <app-child>Lorem, ipsum dolor.</app-child> -->
+
+<app-child #paragraph>Lorem, ipsum dolor.</app-child>
+<p #paragraph>Просто параграф</p>
+
+<ng-template #template>
+  <p>Содержимое внутри ng-template</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="template"></ng-container>
+
+<!-- <app-child #component>Lorem, ipsum dolor.</app-child> -->
+<!-- <app-child>Lorem, ipsum dolor.</app-child> -->
+<app-child #paragraph>Lorem, ipsum dolor.</app-child>

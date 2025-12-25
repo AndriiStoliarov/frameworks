@@ -1,7 +1,16 @@
-import { Component, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  QueryList,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { first } from 'rxjs';
+import { ChildComponent } from './components/child/child.component';
 
 @Component({
   selector: 'app-root',
@@ -75,16 +84,52 @@ export class AppComponent {
   //   return item;
   // }
   //* lesson 16
-  title: string = 'Заголовок';
-  name: string = 'Имя';
-  toggler: boolean = true;
-  obj = { age: 12 };
+  // title: string = 'Заголовок';
+  // name: string = 'Имя';
+  // toggler: boolean = true;
+  // obj = { age: 12 };
 
-  constructor() {
-    setTimeout(() => {
-      this.title = 'Другой заголовок';
-      // this.obj.age = 10;
-      this.obj = { ...this.obj, age: 10 };
-    }, 3000);
+  // constructor() {
+  //   setTimeout(() => {
+  //     this.title = 'Другой заголовок';
+  //     // this.obj.age = 10;
+  //     this.obj = { ...this.obj, age: 10 };
+  //   }, 3000);
+  // }
+  //* lesson 17
+  tittle: string = 'Заголовок';
+
+  // @ViewChild('selector') property: any;
+  // @ViewChild('paragraph') paragraph!: ElementRef<HTMLParagraphElement>;
+  // @ViewChild('paragraph', { read: ChildComponent })
+  // paragraph!: ElementRef<HTMLParagraphElement>;
+  // @ViewChild('paragraph', { read: ChildComponent, static: true })
+  // paragraph!: ElementRef<HTMLParagraphElement>;
+  // @ViewChild('template') template!: TemplateRef<HTMLParagraphElement>;
+  // @ViewChild(TemplateRef) template!: TemplateRef<HTMLParagraphElement>;
+  // @ViewChild(ChildComponent, { static: true }) component!: ChildComponent;
+
+  @ViewChildren('paragraph') paragraph!: QueryList<
+    ElementRef<HTMLParagraphElement>
+  >;
+  @ViewChildren(TemplateRef) template!: QueryList<
+    TemplateRef<HTMLParagraphElement>
+  >;
+  @ViewChildren('paragraph, ChildComponent')
+  component!: QueryList<ChildComponent>;
+
+  ngOnInit() {
+    console.log('component ngOnInit', this.component);
+  }
+
+  ngAfterViewInit(): void {
+    // console.log('paragraph', this.paragraph);
+    // console.log('template', this.template);
+    // console.log('component', this.component);
+
+    // this.paragraph.nativeElement.textContent = 'qwerty';
+    // this.component.name = 'child name from parent';
+
+    this.component.forEach((item) => console.log('item :>> ', item));
   }
 }
