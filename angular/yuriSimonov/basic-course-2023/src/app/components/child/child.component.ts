@@ -4,15 +4,21 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  ContentChild,
+  ContentChildren,
   DoCheck,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   SimpleChanges,
+  TemplateRef,
 } from '@angular/core';
+import { NgContentExampleComponent } from '../ng-content-example/ng-content-example.component';
 
 @Component({
   selector: 'app-child',
@@ -90,6 +96,33 @@ export class ChildComponent {
   // ngOnDestroy(): void {
   //   console.log('%c ngOnDestroy', 'color: red');
   // }
-  title: string = 'child title';
-  name: string = 'child name';
+  // title: string = 'child title';
+  // name: string = 'child name';
+  // @ContentChild('selector') propertyName: dataType;
+  // @ContentChild('tag') paragraph!: ElementRef<HTMLParagraphElement>;
+  // @ContentChild('tag', { static: true })
+  // paragraph!: ElementRef<HTMLParagraphElement>;
+  @ContentChild('tag', { read: TemplateRef })
+  paragraph!: ElementRef<HTMLParagraphElement>;
+  @ContentChild(TemplateRef) template!: TemplateRef<HTMLParagraphElement>;
+  // @ContentChild(NgContentExampleComponent)
+  // component!: NgContentExampleComponent;
+  @ContentChild('descendants', { descendants: false })
+  component!: NgContentExampleComponent;
+  @ContentChildren(NgContentExampleComponent)
+  allChildren!: QueryList<NgContentExampleComponent>;
+
+  ngOnInit() {
+    this.paragraph && console.log('ngOnInit paragraph :>> ', this.paragraph);
+  }
+
+  ngAfterContentInit() {
+    // this.paragraph && console.log('paragraph :>> ', this.paragraph);
+    // this.template && console.log('template :>> ', this.template);
+    // this.component && console.log('component :>> ', this.component);
+
+    this.allChildren && console.log('allChildren :>> ', this.allChildren);
+
+    this.component?.getClassName();
+  }
 }
