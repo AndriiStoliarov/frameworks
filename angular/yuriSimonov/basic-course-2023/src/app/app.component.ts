@@ -88,7 +88,6 @@ export class AppComponent {
   // name: string = 'Имя';
   // toggler: boolean = true;
   // obj = { age: 12 };
-
   // constructor() {
   //   setTimeout(() => {
   //     this.title = 'Другой заголовок';
@@ -97,8 +96,7 @@ export class AppComponent {
   //   }, 3000);
   // }
   //* lesson 17
-  tittle: string = 'Заголовок';
-
+  // tittle: string = 'Заголовок';
   // @ViewChild('selector') property: any;
   // @ViewChild('paragraph') paragraph!: ElementRef<HTMLParagraphElement>;
   // @ViewChild('paragraph', { read: ChildComponent })
@@ -108,28 +106,23 @@ export class AppComponent {
   // @ViewChild('template') template!: TemplateRef<HTMLParagraphElement>;
   // @ViewChild(TemplateRef) template!: TemplateRef<HTMLParagraphElement>;
   // @ViewChild(ChildComponent, { static: true }) component!: ChildComponent;
-
-  @ViewChildren('paragraph') paragraph!: QueryList<
-    ElementRef<HTMLParagraphElement>
-  >;
-  @ViewChildren(TemplateRef) template!: QueryList<
-    TemplateRef<HTMLParagraphElement>
-  >;
-  @ViewChildren('paragraph, ChildComponent')
-  component!: QueryList<ChildComponent>;
-
-  ngOnInit() {
-    console.log('component ngOnInit', this.component);
-  }
-
-  ngAfterViewInit(): void {
-    // console.log('paragraph', this.paragraph);
-    // console.log('template', this.template);
-    // console.log('component', this.component);
-
-    // this.paragraph.nativeElement.textContent = 'qwerty';
-    // this.component.name = 'child name from parent';
-
-    this.component.forEach((item) => console.log('item :>> ', item));
-  }
+  // @ViewChildren('paragraph') paragraph!: QueryList<
+  //   ElementRef<HTMLParagraphElement>
+  // >;
+  // @ViewChildren(TemplateRef) template!: QueryList<
+  //   TemplateRef<HTMLParagraphElement>
+  // >;
+  // @ViewChildren('paragraph, ChildComponent')
+  // component!: QueryList<ChildComponent>;
+  // ngOnInit() {
+  //   console.log('component ngOnInit', this.component);
+  // }
+  // ngAfterViewInit(): void {
+  //   console.log('paragraph', this.paragraph);
+  //   console.log('template', this.template);
+  //   console.log('component', this.component);
+  //   this.paragraph.nativeElement.textContent = 'qwerty';
+  //   this.component.name = 'child name from parent';
+  //   this.component.forEach((item) => console.log('item :>> ', item));
+  // }
 }

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ng-content-example',
-  standalone: true,
   imports: [],
+  standalone: true,
   templateUrl: './ng-content-example.component.html',
   styleUrl: './ng-content-example.component.scss',
 })
