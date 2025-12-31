@@ -438,6 +438,9 @@ track item; let childIndex = $index) {
 
 <!-- lesson 19 --------------------------------->
 <p>Параграф без директивы</p>
-<p appCustomDirective style="color: lime" color="lime" class="color">
+<!-- <p appCustomDirective style="color: lime" [color]="colorProperty" class="color">
+  Параграф с директивы
+</p> -->
+<p [appCustomDirective]="colorProperty" (colorChange)="setColor($event)">
   Параграф с директивы
 </p>

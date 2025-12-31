@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { first } from 'rxjs';
 import { ChildComponent } from './components/child/child.component';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-root',
@@ -125,4 +126,9 @@ export class AppComponent {
   //   this.component.name = 'child name from parent';
   //   this.component.forEach((item) => console.log('item :>> ', item));
   // }
+  colorProperty: string = 'orange';
+
+  setColor(newColor: string) {
+    this.colorProperty = newColor;
+  }
 }
