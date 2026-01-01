@@ -441,6 +441,12 @@ track item; let childIndex = $index) {
 <!-- <p appCustomDirective style="color: lime" [color]="colorProperty" class="color">
   Параграф с директивы
 </p> -->
-<p [appCustomDirective]="colorProperty" (colorChange)="setColor($event)">
+<p
+  [appCustomDirective]="colorProperty"
+  #example="custom"
+  (colorChange)="setColor($event)"
+>
   Параграф с директивы
 </p>
+
+<app-child [style]="{ color: example.getRandomColor() }"></app-child>

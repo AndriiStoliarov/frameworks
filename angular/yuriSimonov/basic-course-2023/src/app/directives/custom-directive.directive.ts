@@ -5,11 +5,13 @@ import {
   HostListener,
   Input,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import { EventEmitter } from 'stream';
+// import { EventEmitter } from 'stream';
 
 @Directive({
   selector: '[appCustomDirective]',
+  exportAs: 'custom',
 })
 export class CustomDirectiveDirective {
   @Input('color') colorProps!: string;
@@ -68,5 +70,7 @@ export class CustomDirectiveDirective {
         .toLocaleUpperCase();
 
     this.colorChange.emit(newColor);
+
+    return newColor;
   }
 }

@@ -6,12 +6,14 @@ import {
   TemplateRef,
   ViewChild,
   ViewChildren,
+  EventEmitter,
+  HostBinding,
+  HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { first } from 'rxjs';
 import { ChildComponent } from './components/child/child.component';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-root',
@@ -130,5 +132,11 @@ export class AppComponent {
 
   setColor(newColor: string) {
     this.colorProperty = newColor;
+  }
+
+  @HostBinding('style.background') bgColor = 'transparent';
+
+  @HostListener('click') handleClick() {
+    console.log('click from AppComponent');
   }
 }
