@@ -437,11 +437,11 @@ track item; let childIndex = $index) {
 </app-child> -->
 
 <!-- lesson 19 --------------------------------->
-<p>Параграф без директивы</p>
+<!-- <p>Параграф без директивы</p> -->
 <!-- <p appCustomDirective style="color: lime" [color]="colorProperty" class="color">
   Параграф с директивы
 </p> -->
-<p
+<!-- <p
   [appCustomDirective]="colorProperty"
   #example="custom"
   (colorChange)="setColor($event)"
@@ -449,4 +449,13 @@ track item; let childIndex = $index) {
   Параграф с директивы
 </p>
 
-<app-child [style]="{ color: example.getRandomColor() }"></app-child>
+<app-child [style]="{ color: example.getRandomColor() }"></app-child> -->
+
+<!-- lesson 21 --------------------------------->
+<button (click)="toggler = !toggler">Кнопка</button>
+
+<p>Параграф без директивы</p>
+<p *appCustomDirective="toggler; let time = time; hello: 'world'">
+  <span>Параграф с директивы</span><br />
+  <span>{{ time | date : "hh:mm:ss " }}</span>
+</p>

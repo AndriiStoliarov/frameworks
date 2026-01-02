@@ -128,15 +128,14 @@ export class AppComponent {
   //   this.component.name = 'child name from parent';
   //   this.component.forEach((item) => console.log('item :>> ', item));
   // }
-  colorProperty: string = 'orange';
-
-  setColor(newColor: string) {
-    this.colorProperty = newColor;
-  }
-
-  @HostBinding('style.background') bgColor = 'transparent';
-
-  @HostListener('click') handleClick() {
-    console.log('click from AppComponent');
-  }
+  // colorProperty: string = 'orange';
+  // setColor(newColor: string) {
+  //   this.colorProperty = newColor;
+  // }
+  // @HostBinding('style.background') bgColor = 'transparent';
+  // @HostListener('click') handleClick() {
+  //   console.log('click from AppComponent');
+  // }
+  //* lesson 21
+  toggler: boolean = true;
 }
