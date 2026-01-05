@@ -9,6 +9,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+import { DynamicComponent } from '../components/dynamic/dynamic.component';
 // import { EventEmitter } from 'stream';
 
 @Directive({
@@ -62,27 +63,34 @@ export class CustomDirectiveDirective {
   //   return newColor;
   // }
   //* lesson 21
-  @Input() appCustomDirective: any;
-  @Input() appCustomDirectiveHello: any;
+  // @Input() appCustomDirective: any;
+  // @Input() appCustomDirectiveHello: any;
 
-  time!: Date;
+  // time!: Date;
 
-  constructor(
-    private template: TemplateRef<any>,
-    private viewContainer: ViewContainerRef
-  ) {}
+  // constructor(
+  //   private template: TemplateRef<any>,
+  //   private viewContainer: ViewContainerRef
+  // ) {}
 
   // ngOnInit() {
   //   this.viewContainer.createEmbeddedView(this.template);
   // }
 
-  ngOnChanges() {
-    console.log('this.hello :>> ', this.appCustomDirectiveHello);
-    this.time = new Date();
-    this.appCustomDirective
-      ? this.viewContainer.createEmbeddedView(this.template, {
-          time: this.time,
-        })
-      : this.viewContainer.clear();
+  // ngOnChanges() {
+  //   console.log('this.hello :>> ', this.appCustomDirectiveHello);
+  //   this.time = new Date();
+  //   this.appCustomDirective
+  //     ? this.viewContainer.createEmbeddedView(this.template, {
+  //         time: this.time,
+  //       })
+  //     : this.viewContainer.clear();
+  // }
+
+  //* lesson 22
+  constructor(private viewContainer: ViewContainerRef) {}
+
+  ngOnInit() {
+    this.viewContainer.createComponent(DynamicComponent);
   }
 }

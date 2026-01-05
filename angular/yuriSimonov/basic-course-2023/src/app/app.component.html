@@ -452,10 +452,19 @@ track item; let childIndex = $index) {
 <app-child [style]="{ color: example.getRandomColor() }"></app-child> -->
 
 <!-- lesson 21 --------------------------------->
-<button (click)="toggler = !toggler">Кнопка</button>
+<!-- <button (click)="toggler = !toggler">Кнопка</button>
 
 <p>Параграф без директивы</p>
 <p *appCustomDirective="toggler; let time = time; hello: 'world'">
   <span>Параграф с директивы</span><br />
   <span>{{ time | date : "hh:mm:ss " }}</span>
-</p>
+</p> -->
+<!-- lesson 22 --------------------------------->
+<button (click)="showComponent()">Обычная кнопка</button>
+<!-- <button (click)="asyncShowComponent()">Волшебная кнопка</button> -->
+
+<!-- <div #example></div> -->
+<ng-container #example></ng-container>
+
+<p>Параграф без директивы</p>
+<p *appCustomDirective>Параграф с директивы</p>

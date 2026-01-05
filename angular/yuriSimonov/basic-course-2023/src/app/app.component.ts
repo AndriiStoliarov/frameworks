@@ -9,16 +9,16 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
+  ViewContainerRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { first } from 'rxjs';
 import { ChildComponent } from './components/child/child.component';
+import { DynamicComponent } from './components/dynamic/dynamic.component';
 
 @Component({
   selector: 'app-root',
-  // standalone: true,
-  // imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -136,6 +136,31 @@ export class AppComponent {
   // @HostListener('click') handleClick() {
   //   console.log('click from AppComponent');
   // }
-  //* lesson 21
+  //* lesson 21-22
   toggler: boolean = true;
+
+  @ViewChild('example', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+
+  constructor(private viewContainer: ViewContainerRef) {}
+
+  showComponent() {
+    this.viewContainer.createComponent(DynamicComponent);
+  }
+
+  async asyncShowComponent() {
+    // const { DynamicComponent } = await import('./components/dynamic/dynamic.component');
+    this.viewContainer.createComponent(DynamicComponent);
+  }
+
+  ngAfterViewInit() {
+    const newComponent = this.container.createComponent(DynamicComponent);
+    // newComponent.instance.name = 'new name';
+    // newComponent.instance.callName();
+
+    newComponent.setInput('name', 'new name');
+
+    const someData = newComponent.instance.callName();
+    console.log('someData :>> ', someData);
+  }
 }
