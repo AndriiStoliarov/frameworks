@@ -9,6 +9,8 @@ import { ChildComponent } from './components/child/child.component';
 import { NgContentExampleComponent } from './components/ng-content-example/ng-content-example.component';
 import { CustomDirectiveDirective } from './directives/custom-directive.directive';
 import { DynamicComponent } from './components/dynamic/dynamic.component';
+import { FirstModule } from './modules/first/first.module';
+import { SecondModule } from './modules/second/second.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,13 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
     CustomDirectiveDirective,
     DynamicComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgContentExampleComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgContentExampleComponent,
+    FirstModule,
+    SecondModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
