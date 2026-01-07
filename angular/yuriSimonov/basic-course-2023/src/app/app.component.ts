@@ -153,14 +153,12 @@ export class AppComponent {
     this.viewContainer.createComponent(DynamicComponent);
   }
 
-  ngAfterViewInit() {
-    const newComponent = this.container.createComponent(DynamicComponent);
-    // newComponent.instance.name = 'new name';
-    // newComponent.instance.callName();
-
-    newComponent.setInput('name', 'new name');
-
-    const someData = newComponent.instance.callName();
-    console.log('someData :>> ', someData);
-  }
+  // ngAfterViewInit() {
+  // const newComponent = this.container.createComponent(DynamicComponent);
+  // newComponent.instance.name = 'new name';
+  // newComponent.instance.callName();
+  // newComponent.setInput('name', 'new name');
+  // const someData = newComponent.instance.callName();
+  // console.log('someData :>> ', someData);
+  // }
 }
