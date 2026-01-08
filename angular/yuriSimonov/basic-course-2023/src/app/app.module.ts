@@ -11,6 +11,8 @@ import { CustomDirectiveDirective } from './directives/custom-directive.directiv
 import { DynamicComponent } from './components/dynamic/dynamic.component';
 import { FirstModule } from './modules/first/first.module';
 import { SecondModule } from './modules/second/second.module';
+import { GreenComponent } from './shared/components/green/green.component';
+import { BlueComponent } from './shared/components/blue/blue.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { SecondModule } from './modules/second/second.module';
     NgContentExampleComponent,
     FirstModule,
     SecondModule,
+    GreenComponent,
+    BlueComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
