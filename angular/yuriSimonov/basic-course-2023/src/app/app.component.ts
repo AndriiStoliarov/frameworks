@@ -10,6 +10,7 @@ import {
   HostBinding,
   HostListener,
   ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -21,6 +22,7 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  // encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AppComponent {
   // title = 'basic course 2023';
@@ -137,22 +139,17 @@ export class AppComponent {
   //   console.log('click from AppComponent');
   // }
   //* lesson 21-22
-  toggler: boolean = true;
-
-  @ViewChild('example', { read: ViewContainerRef })
-  container!: ViewContainerRef;
-
-  constructor(private viewContainer: ViewContainerRef) {}
-
-  showComponent() {
-    this.viewContainer.createComponent(DynamicComponent);
-  }
-
-  async asyncShowComponent() {
-    // const { DynamicComponent } = await import('./components/dynamic/dynamic.component');
-    this.viewContainer.createComponent(DynamicComponent);
-  }
-
+  // toggler: boolean = true;
+  // @ViewChild('example', { read: ViewContainerRef })
+  // container!: ViewContainerRef;
+  // constructor(private viewContainer: ViewContainerRef) {}
+  // showComponent() {
+  //   this.viewContainer.createComponent(DynamicComponent);
+  // }
+  // async asyncShowComponent() {
+  //   // const { DynamicComponent } = await import('./components/dynamic/dynamic.component');
+  //   this.viewContainer.createComponent(DynamicComponent);
+  // }
   // ngAfterViewInit() {
   // const newComponent = this.container.createComponent(DynamicComponent);
   // newComponent.instance.name = 'new name';
