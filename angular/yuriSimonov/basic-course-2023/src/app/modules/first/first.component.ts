@@ -4,6 +4,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app-first',
   templateUrl: './first.component.html',
   styleUrl: './first.component.scss',
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class FirstComponent {}

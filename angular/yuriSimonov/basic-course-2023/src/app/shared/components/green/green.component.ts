@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './green.component.scss',
   standalone: true,
   // imports: [RedComponent],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class GreenComponent {}

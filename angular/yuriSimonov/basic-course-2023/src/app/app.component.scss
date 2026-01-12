@@ -1,32 +1,40 @@
-body {
-  background-color: tgb(51, 51, 51);
-  color: white;
-}
+// body {
+//   background-color: tgb(51, 51, 51);
+//   color: white;
+// }
 
-.red {
-  color: red;
-}
+// .red {
+//   color: red;
+// }
 
-.blue {
-  color: blue;
-}
+// .blue {
+//   color: blue;
+// }
 
-.pink {
-  color: pink;
-}
+// .pink {
+//   color: pink;
+// }
 
-.green {
-  color: green;
-}
+// .green {
+//   color: green;
+// }
 
-.aqua {
-  color: aqua;
-}
+// .aqua {
+//   color: aqua;
+// }
 
-.orange {
-  color: orange;
-}
+// .orange {
+//   color: orange;
+// }
 
-h1 {
-  color: orange;
-}
+// h1 {
+//   color: orange;
+// }
+
+// ::ng-deep app-first h1 {
+//   background-color: black;
+// }
+
+// :host ::ng-deep app-first h1 {
+//   background-color: black;
+// }
