@@ -14,7 +14,29 @@ import { DynamicComponent } from '../components/dynamic/dynamic.component';
 
 @Directive({
   selector: '[appCustomDirective]',
-  exportAs: 'custom',
+  // exportAs: 'custom',
+  host: {
+    /**
+     * Статические варианты записей
+     */
+    // style: 'color: lime',
+    // class: 'some-css-class',
+    // color: 'some-attr-data',
+    // color: '',
+    /**
+     * Динамические варианты записей
+     */
+    // '[style.color]': '"lime"',
+    // '[style.width.%]': '20',
+    // '[class.some-css-class]': 'true',
+    // '[attr.color]': '"some-attr-data"',
+    // '[attr.color]': '""',
+    '[style.color]': 'inlineStyle',
+    // '[style.color]': '!true ? "green" : "red"',
+    '[attr.color]': 'appCustomDirective',
+    // '(document:click)': 'changeColor($event, true)',
+    '(document:click)': 'true && changeColor($event, true)',
+  },
 })
 export class CustomDirectiveDirective {
   // @Input('color') colorProps!: string;
@@ -65,18 +87,14 @@ export class CustomDirectiveDirective {
   //* lesson 21
   // @Input() appCustomDirective: any;
   // @Input() appCustomDirectiveHello: any;
-
   // time!: Date;
-
   // constructor(
   //   private template: TemplateRef<any>,
   //   private viewContainer: ViewContainerRef
   // ) {}
-
   // ngOnInit() {
   //   this.viewContainer.createEmbeddedView(this.template);
   // }
-
   // ngOnChanges() {
   //   console.log('this.hello :>> ', this.appCustomDirectiveHello);
   //   this.time = new Date();
@@ -86,11 +104,31 @@ export class CustomDirectiveDirective {
   //       })
   //     : this.viewContainer.clear();
   // }
-
   //* lesson 22
-  constructor(private viewContainer: ViewContainerRef) {}
+  // constructor(private viewContainer: ViewContainerRef) {}
+  // ngOnInit() {
+  //   this.viewContainer.createComponent(DynamicComponent);
+  // }
+  //* lesson 27
+  inlineStyle: string = 'orange';
 
-  ngOnInit() {
-    this.viewContainer.createComponent(DynamicComponent);
+  @Input() appCustomDirective!: string;
+
+  // @HostListener('document:click') handleClick() {
+  //   this.changeColor();
+  // }
+
+  // ngOnInit() {
+  //   setInterval(() => {
+  //     this.changeColor();
+  //   }, 1000);
+  // }
+
+  changeColor(...args: any) {
+    console.log('args :>> ', args);
+
+    this.inlineStyle =
+      '#' +
+      (Math.random().toString(16) + '000000').substring(2, 8).toUpperCase();
   }
 }
