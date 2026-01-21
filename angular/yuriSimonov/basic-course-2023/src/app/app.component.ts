@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './components/child/child.component';
 import { filter, from, fromEvent, interval, map, Observable, of } from 'rxjs';
@@ -10,6 +10,8 @@ import { AsyncPipe } from '@angular/common';
   imports: [RouterOutlet, ChildComponent, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  // changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   //* rxjs - это библиотека для работы с асинхронным кодом с помощью класса Observable (поток, поток данных).
@@ -87,24 +89,46 @@ export class AppComponent {
   //   //* оператор interval создает поток, в который отправляет последовательность чисел с заданным интервалом времени. Самостоятельно не завершает поток.
   //   interval(1000).subscribe(console.log);
   // }
-
+  //
   //lesson 31
-  exampleObservable$!: Observable<any>;
-  examplePromise$!: Promise<any>;
+  // exampleObservable$!: Observable<any>;
+  // examplePromise$!: Promise<any>;
+  // ngOnInit() {
+  //   this.exampleObservable$ = interval(1000).pipe(
+  //     map((value) => ({
+  //       previousValue: value - 1,
+  //       currentValue: value,
+  //       nextValue: value + 1,
+  //     })),
+  //   );
+  //   this.examplePromise$ = new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve('Promise успешно выполнился');
+  //     }, 3000);
+  //   });
+  // }
+  //
+  //lesson 32
+  //* Change detection - механизм, которым angular определяет изменилось ли состояние приложения и нужно ли обновить DOM-дерево.
 
-  ngOnInit() {
-    this.exampleObservable$ = interval(1000).pipe(
-      map((value) => ({
-        previousValue: value - 1,
-        currentValue: value,
-        nextValue: value + 1,
-      })),
-    );
+  title: string = 'Hello, world!';
+  interval$ = interval(1000);
+  signal = signal(0);
 
-    this.examplePromise$ = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve('Promise успешно выполнился');
-      }, 3000);
-    });
+  ngDoCheck() {
+    console.log('ngDoCheck app-root');
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit app-root');
+
+    setTimeout(() => {
+      this.title = 'Привет, мир!';
+      this.signal.set(1);
+    }, 3000);
+  }
+
+  handleClick() {
+    console.log('handleClick');
   }
 }
