@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  signal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './components/child/child.component';
 import { filter, from, fromEvent, interval, map, Observable, of } from 'rxjs';
@@ -124,11 +129,20 @@ export class AppComponent {
 
     setTimeout(() => {
       this.title = 'Привет, мир!';
-      this.signal.set(1);
+      // this.signal.set(1);
+      // this.cdr.detach();
     }, 3000);
+    setTimeout(() => {
+      // this.cdr.reattach();
+    }, 6000);
   }
 
   handleClick() {
     console.log('handleClick');
+  }
+
+  //lesson 33
+  constructor(private cdr: ChangeDetectorRef) {
+    // this.cdr.detach();
   }
 }
