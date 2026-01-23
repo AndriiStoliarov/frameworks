@@ -116,33 +116,43 @@ export class AppComponent {
   //lesson 32
   //* Change detection - механизм, которым angular определяет изменилось ли состояние приложения и нужно ли обновить DOM-дерево.
 
-  title: string = 'Hello, world!';
-  interval$ = interval(1000);
-  signal = signal(0);
+  // title: string = 'Hello, world!';
+  // interval$ = interval(1000);
+  // signal = signal(0);
 
-  ngDoCheck() {
-    console.log('ngDoCheck app-root');
-  }
+  // ngDoCheck() {
+  //   console.log('ngDoCheck app-root');
+  // }
 
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit app-root');
+  // ngAfterViewInit() {
+  //   console.log('ngAfterViewInit app-root');
 
-    setTimeout(() => {
-      this.title = 'Привет, мир!';
-      // this.signal.set(1);
-      // this.cdr.detach();
-    }, 3000);
-    setTimeout(() => {
-      // this.cdr.reattach();
-    }, 6000);
-  }
+  //   setTimeout(() => {
+  //     this.title = 'Привет, мир!';
+  //     // this.signal.set(1);
+  //     // this.cdr.detach();
+  //   }, 3000);
+  //   setTimeout(() => {
+  //     // this.cdr.reattach();
+  //   }, 6000);
+  // }
 
-  handleClick() {
-    console.log('handleClick');
-  }
+  // handleClick() {
+  //   console.log('handleClick');
+  // }
 
   //lesson 33
+  // constructor(private cdr: ChangeDetectorRef) {
+  //   this.cdr.detach();
+  // }
+
+  //lesson 36
+  name: string = 'Миша';
+
   constructor(private cdr: ChangeDetectorRef) {
-    // this.cdr.detach();
+    setTimeout(() => {
+      this.name = 'Максим';
+      this.cdr.markForCheck();
+    }, 3000);
   }
 }
