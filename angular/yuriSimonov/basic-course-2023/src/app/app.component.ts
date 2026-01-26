@@ -6,8 +6,18 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './components/child/child.component';
-import { filter, from, fromEvent, interval, map, Observable, of } from 'rxjs';
+import {
+  delay,
+  filter,
+  from,
+  fromEvent,
+  interval,
+  map,
+  Observable,
+  of,
+} from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -147,12 +157,46 @@ export class AppComponent {
   // }
 
   //lesson 36
-  name: string = 'Миша';
+  // name: string = 'Миша';
 
-  constructor(private cdr: ChangeDetectorRef) {
-    setTimeout(() => {
-      this.name = 'Максим';
-      this.cdr.markForCheck();
-    }, 3000);
+  // constructor(private cdr: ChangeDetectorRef) {
+  //   setTimeout(() => {
+  //     this.name = 'Максим';
+  //     this.cdr.markForCheck();
+  //   }, 3000);
+  // }
+
+  //lesson 37
+  //* компоненты в angular предназначены для управления представлением и взаимодействием с пользователем.
+  //* сервисы в angular предназначены для выполнения бизнес логики и работы с данными.
+  // private _dataService: DataService;
+
+  // constructor(dataService: DataService) {
+  //   this._dataService = dataService;
+
+  //   console.log(this._dataService.getData());
+  // }
+  users: any;
+  users$: Observable<any>;
+
+  constructor(
+    private dataService: DataService,
+    private cdr: ChangeDetectorRef,
+  ) {
+    console.log(this.dataService.getData());
+
+    this.dataService.getUsers().subscribe((users) => {
+      console.log(users);
+
+      this.users = users;
+
+      // this.cdr.detectChanges();
+    });
+
+    this.users$ = this.dataService.getUsers().pipe(delay(2000));
+  }
+
+  ngAfterViewInit() {
+    console.log('this.users :>> ', this.users);
   }
 }

@@ -34,5 +34,26 @@
 <!-- <h2>{{ signal() }}</h2> -->
 
 <!-- lesson 36 -->
-<app-child name="Вася"></app-child>
+<!-- <app-child name="Вася"></app-child> -->
 <!-- <app-child [name]="name"></app-child> -->
+
+<!-- lesson 37 -->
+@if (users) {
+  <p>Первый список</p>
+  <ul>
+    @for (user of users; track $index) {
+      <li>{{ user.name }}</li>
+    }
+  </ul>
+}
+
+<hr />
+
+@if (users$ | async; as users) {
+  <p>Второй список</p>
+  <ul>
+    @for (user of users; track $index) {
+      <li>{{ user.name }}</li>
+    }
+  </ul>
+}
