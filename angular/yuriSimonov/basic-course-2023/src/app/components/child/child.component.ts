@@ -5,6 +5,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { RandomService } from '../../services/random.service';
 // import { GreenComponent } from '../green/green.component';
 
 @Component({
@@ -14,6 +15,7 @@ import {
   templateUrl: './child.component.html',
   styleUrl: './child.component.scss',
   // changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [RandomService],
 })
 export class ChildComponent {
   // @Input() currentValue!: number;
@@ -37,5 +39,9 @@ export class ChildComponent {
   // }
   // lesson 36
   // @Input() name!: string;
-  constructor(@Attribute('name') public name: string) {}
+  // constructor(@Attribute('name') public name: string) {}
+  // lesson 38
+  constructor(private randomService: RandomService) {
+    console.log(this.randomService.getRandomNumber());
+  }
 }

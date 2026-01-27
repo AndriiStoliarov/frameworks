@@ -18,6 +18,7 @@ import {
 } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { DataService } from './services/data.service';
+import { RandomService } from './services/random.service';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { DataService } from './services/data.service';
   styleUrl: './app.component.scss',
   // changeDetection: ChangeDetectionStrategy.Default,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [RandomService],
 })
 export class AppComponent {
   //* rxjs - это библиотека для работы с асинхронным кодом с помощью класса Observable (поток, поток данных).
@@ -182,6 +184,7 @@ export class AppComponent {
   constructor(
     private dataService: DataService,
     private cdr: ChangeDetectorRef,
+    private randomService: RandomService,
   ) {
     console.log(this.dataService.getData());
 
@@ -194,6 +197,7 @@ export class AppComponent {
     });
 
     this.users$ = this.dataService.getUsers().pipe(delay(2000));
+    console.log(this.randomService.getRandomNumber());
   }
 
   ngAfterViewInit() {
