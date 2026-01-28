@@ -9,13 +9,12 @@ import { RandomService } from '../../services/random.service';
 // import { GreenComponent } from '../green/green.component';
 
 @Component({
-  selector: 'app-child',
-  standalone: true,
-  imports: [],
-  templateUrl: './child.component.html',
-  styleUrl: './child.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [RandomService],
+    selector: 'app-child',
+    imports: [],
+    templateUrl: './child.component.html',
+    styleUrl: './child.component.scss',
+    // changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [RandomService]
 })
 export class ChildComponent {
   // @Input() currentValue!: number;

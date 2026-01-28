@@ -38,7 +38,7 @@
 <!-- <app-child [name]="name"></app-child> -->
 
 <!-- lesson 37 -->
-@if (users) {
+<!-- @if (users) {
   <p>Первый список</p>
   <ul>
     @for (user of users; track $index) {
@@ -58,4 +58,16 @@
   </ul>
 }
 
-<app-child></app-child>
+<app-child></app-child> -->
+
+<!-- lesson 39 -->
+<!-- @let title = data.one.two.three.title;
+
+<h1>{{ title }}</h1> -->
+
+@if ((asyncData$ | async)?.one?.two?.three?.title; as title) {
+  <h1>{{ title }}</h1>
+}
+
+@let asyncTitle = (asyncData$ | async)?.one?.two?.three?.title;
+<h1>{{ asyncTitle }}</h1>

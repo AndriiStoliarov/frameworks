@@ -23,7 +23,8 @@ import { RandomService } from './services/random.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ChildComponent, AsyncPipe],
+  // imports: [RouterOutlet, ChildComponent, AsyncPipe],
+  imports: [AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   // changeDetection: ChangeDetectionStrategy.Default,
@@ -127,18 +128,14 @@ export class AppComponent {
   //
   //lesson 32
   //* Change detection - механизм, которым angular определяет изменилось ли состояние приложения и нужно ли обновить DOM-дерево.
-
   // title: string = 'Hello, world!';
   // interval$ = interval(1000);
   // signal = signal(0);
-
   // ngDoCheck() {
   //   console.log('ngDoCheck app-root');
   // }
-
   // ngAfterViewInit() {
   //   console.log('ngAfterViewInit app-root');
-
   //   setTimeout(() => {
   //     this.title = 'Привет, мир!';
   //     // this.signal.set(1);
@@ -148,59 +145,60 @@ export class AppComponent {
   //     // this.cdr.reattach();
   //   }, 6000);
   // }
-
   // handleClick() {
   //   console.log('handleClick');
   // }
-
   //lesson 33
   // constructor(private cdr: ChangeDetectorRef) {
   //   this.cdr.detach();
   // }
-
   //lesson 36
   // name: string = 'Миша';
-
   // constructor(private cdr: ChangeDetectorRef) {
   //   setTimeout(() => {
   //     this.name = 'Максим';
   //     this.cdr.markForCheck();
   //   }, 3000);
   // }
-
   //lesson 37
   //* компоненты в angular предназначены для управления представлением и взаимодействием с пользователем.
   //* сервисы в angular предназначены для выполнения бизнес логики и работы с данными.
   // private _dataService: DataService;
-
   // constructor(dataService: DataService) {
   //   this._dataService = dataService;
-
   //   console.log(this._dataService.getData());
   // }
-  users: any;
-  users$: Observable<any>;
+  // users: any;
+  // users$: Observable<any>;
+  // constructor(
+  //   private dataService: DataService,
+  //   private cdr: ChangeDetectorRef,
+  //   private randomService: RandomService,
+  // ) {
+  //   console.log(this.dataService.getData());
+  //   this.dataService.getUsers().subscribe((users) => {
+  //     console.log(users);
+  //     this.users = users;
+  //     // this.cdr.detectChanges();
+  //   });
+  //   this.users$ = this.dataService.getUsers().pipe(delay(2000));
+  //   console.log(this.randomService.getRandomNumber());
+  // }
+  // ngAfterViewInit() {
+  //   console.log('this.users :>> ', this.users);
+  // }
+  //lesson 39
+  data = {
+    one: {
+      two: {
+        three: {
+          title: 'Hello world',
+        },
+      },
+    },
+  };
 
-  constructor(
-    private dataService: DataService,
-    private cdr: ChangeDetectorRef,
-    private randomService: RandomService,
-  ) {
-    console.log(this.dataService.getData());
+  asyncData$ = of(this.data);
 
-    this.dataService.getUsers().subscribe((users) => {
-      console.log(users);
-
-      this.users = users;
-
-      // this.cdr.detectChanges();
-    });
-
-    this.users$ = this.dataService.getUsers().pipe(delay(2000));
-    console.log(this.randomService.getRandomNumber());
-  }
-
-  ngAfterViewInit() {
-    console.log('this.users :>> ', this.users);
-  }
+  constructor() {}
 }
