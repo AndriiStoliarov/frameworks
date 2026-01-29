@@ -3,24 +3,32 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Inject,
   Input,
 } from '@angular/core';
 import { RandomService } from '../../services/random.service';
+import { TOKEN } from '../../shared/tokens/tokens';
 // import { GreenComponent } from '../green/green.component';
 
 @Component({
-    selector: 'app-child',
-    imports: [],
-    templateUrl: './child.component.html',
-    styleUrl: './child.component.scss',
-    // changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [RandomService]
+  selector: 'app-child',
+  imports: [],
+  templateUrl: './child.component.html',
+  styleUrl: './child.component.scss',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    RandomService,
+    {
+      provide: TOKEN,
+      useValue: 123,
+    },
+  ],
 })
 export class ChildComponent {
   // @Input() currentValue!: number;
   // lesson 32
   // @Input() number!: number;
-  //lesson 33
+  // lesson 33
   // constructor(private cdr: ChangeDetectorRef) {
   //   this.cdr.detach();
   // }
@@ -40,7 +48,11 @@ export class ChildComponent {
   // @Input() name!: string;
   // constructor(@Attribute('name') public name: string) {}
   // lesson 38
-  constructor(private randomService: RandomService) {
-    console.log(this.randomService.getRandomNumber());
+  // constructor(private randomService: RandomService) {
+  //   console.log(this.randomService.getRandomNumber());
+  // }
+  // lesson 40
+  constructor(@Inject(TOKEN) private token: number) {
+    // console.log('this.token :>> ', this.token);
   }
 }

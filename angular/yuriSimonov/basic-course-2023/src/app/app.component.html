@@ -65,9 +65,20 @@
 
 <h1>{{ title }}</h1> -->
 
-@if ((asyncData$ | async)?.one?.two?.three?.title; as title) {
+<!-- @if ((asyncData$ | async)?.one?.two?.three?.title; as title) {
   <h1>{{ title }}</h1>
 }
 
 @let asyncTitle = (asyncData$ | async)?.one?.two?.three?.title;
-<h1>{{ asyncTitle }}</h1>
+<h1>{{ asyncTitle }}</h1> -->
+
+<!-- lesson 40 -->
+@if (users$ | async; as users) {
+  <p>Список:</p>
+  <ul>
+    @for (user of users; track $index) {
+      <li>{{ user.name }}</li>
+    }
+  </ul>
+}
+<app-child></app-child>

@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
+  Inject,
   signal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -19,17 +21,85 @@ import {
 import { AsyncPipe } from '@angular/common';
 import { DataService } from './services/data.service';
 import { RandomService } from './services/random.service';
+import { UserService } from './services/user.service';
+import {
+  ADMIN_RANDOM_SERVICE_TOKEN,
+  TOKEN,
+  USER_RANDOM_SERVICE_TOKEN,
+} from './shared/tokens/tokens';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  // imports: [RouterOutlet, ChildComponent, AsyncPipe],
-  imports: [AsyncPipe],
+  imports: [RouterOutlet, ChildComponent, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   // changeDetection: ChangeDetectionStrategy.Default,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [RandomService],
+  providers: [
+    RandomService,
+    DataService,
+    // {
+    //   provide: DataService,
+    //   useClass: UserService,
+    // },
+    // {
+    //   provide: TOKEN,
+    //   useValue: 'Какие-то строковые данные',
+    // },
+    // {
+    // provide: TOKEN,
+    // useFactory: () => console.log('Какая-то логика внутри функции'),
+    // },
+    // {
+    //   provide: TOKEN,
+    //   useFactory: () => {
+    //     if (Math.random() > 0.5) {
+    //       return {
+    //         message: 'Число больше 0.5',
+    //       };
+    //     }
+    //     return {
+    //       message: 'Число меньше 0.5',
+    //     };
+    //   },
+    // },
+    // {
+    //   provide: TOKEN,
+    //   useFactory: (http: HttpClient) => {
+    //     if (Math.random() > 0.5) {
+    //       return new RandomService();
+    //     }
+    //     return new DataService(http);
+    //   },
+    //   deps: [HttpClient],
+    // },
+    // {
+    //   provide: USER_RANDOM_SERVICE_TOKEN,
+    //   useExisting: RandomService,
+    // },
+    // {
+    //   provide: ADMIN_RANDOM_SERVICE_TOKEN,
+    //   useExisting: RandomService,
+    // },
+    // строка
+    { provide: TOKEN, useValue: 'Какие-то строковые данные', multi: true },
+    // число
+    { provide: TOKEN, useValue: 1, multi: true },
+    // булево
+    { provide: TOKEN, useValue: true, multi: true },
+    // объект
+    { provide: TOKEN, useValue: { name: 'Вася' }, multi: true },
+    // массив
+    { provide: TOKEN, useValue: [1, 2, 3], multi: true },
+    // функция
+    {
+      provide: TOKEN,
+      useValue: () => console.log('Какая-то логика внутри функции'),
+      multi: true,
+    },
+  ],
 })
 export class AppComponent {
   //* rxjs - это библиотека для работы с асинхронным кодом с помощью класса Observable (поток, поток данных).
@@ -187,18 +257,41 @@ export class AppComponent {
   // ngAfterViewInit() {
   //   console.log('this.users :>> ', this.users);
   // }
+
   //lesson 39
-  data = {
-    one: {
-      two: {
-        three: {
-          title: 'Hello world',
-        },
-      },
-    },
-  };
+  // data = {
+  //   one: {
+  //     two: {
+  //       three: {
+  //         title: 'Hello world',
+  //       },
+  //     },
+  //   },
+  // };
 
-  asyncData$ = of(this.data);
+  // asyncData$ = of(this.data);
 
-  constructor() {}
+  // constructor() {}
+
+  //lesson 40
+  users$: Observable<any>;
+
+  dataService3 = inject(DataService);
+
+  constructor(
+    private dataService: DataService,
+    // @Inject(DataService) private dataService2: DataService,
+    @Inject(TOKEN) private token: string,
+    // @Inject(USER_RANDOM_SERVICE_TOKEN) private userRandomService: RandomService,
+    // @Inject(ADMIN_RANDOM_SERVICE_TOKEN)
+    // private adminRandomService: RandomService,
+  ) {
+    this.users$ = this.dataService.getUsers();
+    console.log('this.token :>> ', this.token);
+    // console.log('this.dataService :>> ', this.dataService);
+    // console.log('this.dataService2 :>> ', this.dataService2);
+    // console.log('this.dataService3 :>> ', this.dataService3);
+    // console.log('this.userRandomService :>> ', this.userRandomService);
+    // console.log('this.adminRandomService :>> ', this.adminRandomService);
+  }
 }
