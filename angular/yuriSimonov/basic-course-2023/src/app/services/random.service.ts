@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RandomService {
-  randomNumber: number;
+  private _randomNumber: number;
 
   constructor() {
-    this.randomNumber = Math.floor(Math.random() * 100);
+    this._randomNumber = Math.floor(Math.random() * 100);
   }
 
   getRandomNumber() {
-    return this.randomNumber;
+    return this._randomNumber;
   }
 }
