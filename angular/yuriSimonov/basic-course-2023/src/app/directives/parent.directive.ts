@@ -3,10 +3,10 @@ import { RandomService } from '../services/random.service';
 
 @Directive({
   selector: '[appParent]',
-  providers: [RandomService],
+  // providers: [RandomService],
 })
 export class ParentDirective {
   constructor(@Optional() private randomService: RandomService) {
-    console.log('ParentDirective :>> ', this.randomService);
+    // console.log('ParentDirective :>> ', this.randomService);
   }
 }

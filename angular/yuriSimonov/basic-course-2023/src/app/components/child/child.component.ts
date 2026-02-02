@@ -13,6 +13,8 @@ import { RandomService } from '../../services/random.service';
 import { TOKEN } from '../../shared/tokens/tokens';
 import { ChildDirective } from '../../directives/child.directive';
 import { ParentDirective } from '../../directives/parent.directive';
+import { RedComponent } from '../red/red.component';
+import { GreenComponent } from '../green/green.component';
 // import { GreenComponent } from '../green/green.component';
 
 @Component({
@@ -27,10 +29,20 @@ import { ParentDirective } from '../../directives/parent.directive';
   //     useValue: 123,
   //   },
   // ],
-  imports: [ChildDirective, ParentDirective],
-  providers: [RandomService],
+  // imports: [ChildDirective, ParentDirective],
+  imports: [RedComponent, GreenComponent],
+  // providers: [RandomService],
+  //* свойство viewProviders доступно только компонентам. Не распространяется на содержимое, которое указывается между тегами компонента.
+  // viewProviders: [RandomService],
 })
 export class ChildComponent {
+  constructor(private randomService: RandomService) {
+    console.log('ChildComponent :>> ', this.randomService);
+  }
+  // lesson 42
+  // constructor(@Inject(TOKEN) private token: number) {
+  //   console.log('this.token :>> ', this.token);
+  // }
   // lesson 41
   //* @Optional() вместо ошибки получаем null в свойстве, через которую получает доступ к внедряемой зависимости.
   // constructor(@Optional() private randomService: RandomService) {
@@ -70,19 +82,19 @@ export class ChildComponent {
   //   console.log('globalRandomService :>> ', this.globalRandomService);
   // }
   //* декоратор @Host() сообщает angular, что не нужно искать регистрацию зависимости выше представления родительского компонента.
-  constructor(
-    @SkipSelf() @Optional() private randomService: RandomService,
-    @Self() @Optional() private localRandomService: RandomService,
-    @SkipSelf() @Optional() private globalRandomService: RandomService,
-  ) {
-    // if (this.randomService) {
-    //   console.log('randomService :>> ', this.randomService.getRandomNumber());
-    // } else {
-    //   console.log('randomService :>> ', this.randomService);
-    // }
-    // console.log('localRandomService :>> ', this.localRandomService);
-    // console.log('globalRandomService :>> ', this.globalRandomService);
-  }
+  // constructor(
+  //   @SkipSelf() @Optional() private randomService: RandomService,
+  //   @Self() @Optional() private localRandomService: RandomService,
+  //   @SkipSelf() @Optional() private globalRandomService: RandomService,
+  // ) {
+  //   if (this.randomService) {
+  //     console.log('randomService :>> ', this.randomService.getRandomNumber());
+  //   } else {
+  //     console.log('randomService :>> ', this.randomService);
+  //   }
+  //   console.log('localRandomService :>> ', this.localRandomService);
+  //   console.log('globalRandomService :>> ', this.globalRandomService);
+  // }
   // @Input() currentValue!: number;
   // lesson 32
   // @Input() number!: number;

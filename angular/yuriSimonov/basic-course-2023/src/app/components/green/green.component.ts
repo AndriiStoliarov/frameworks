@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RandomService } from '../../services/random.service';
 
 @Component({
   selector: 'app-green',
@@ -9,9 +10,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GreenComponent {
-  color: string = 'green';
-
-  ngAfterViewInit() {
-    this.color = 'pink';
+  // lesson 52
+  constructor(private randomService: RandomService) {
+    console.log('GreenComponent :>> ', this.randomService);
   }
+  // color: string = 'green';
+
+  // ngAfterViewInit() {
+  //   this.color = 'pink';
+  // }
 }
