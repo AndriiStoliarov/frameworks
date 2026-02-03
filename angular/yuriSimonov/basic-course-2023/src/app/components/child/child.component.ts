@@ -3,6 +3,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  HostAttributeToken,
+  inject,
   Inject,
   Input,
   Optional,
@@ -31,13 +33,33 @@ import { GreenComponent } from '../green/green.component';
   // ],
   // imports: [ChildDirective, ParentDirective],
   imports: [RedComponent, GreenComponent],
-  // providers: [RandomService],
+  providers: [{ provide: TOKEN, useValue: 123 }],
   //* свойство viewProviders доступно только компонентам. Не распространяется на содержимое, которое указывается между тегами компонента.
   // viewProviders: [RandomService],
 })
 export class ChildComponent {
-  constructor(private randomService: RandomService) {
-    console.log('ChildComponent :>> ', this.randomService);
+  // lesson 43
+  //* функция inject() предназначена для внедрения зависимостей без использования конструктора класса.
+  randomService1 = inject(RandomService);
+  token1 = inject(TOKEN);
+  token3: number;
+  name1 = inject(new HostAttributeToken('name'), { optional: true });
+
+  constructor(
+    private randomService2: RandomService,
+    @Inject(TOKEN) private token2: number,
+    @Attribute('name') public name2: string,
+  ) {
+    this.token3 = inject(TOKEN);
+    console.log('ChildComponent 1 :>> ', this.randomService1);
+    console.log('ChildComponent 2 :>> ', this.randomService2);
+
+    console.log('token 1 :>> ', this.token1);
+    console.log('token 2 :>> ', this.token2);
+    console.log('token 3 :>> ', this.token3);
+
+    console.log('this.name1 :>> ', this.name1);
+    console.log('this.name2 :>> ', this.name2);
   }
   // lesson 42
   // constructor(@Inject(TOKEN) private token: number) {
