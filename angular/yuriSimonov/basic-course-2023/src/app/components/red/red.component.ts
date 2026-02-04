@@ -10,7 +10,7 @@ import { RandomService } from '../../services/random.service';
   // providers: [RandomService],
 })
 export class RedComponent {
-  constructor(private randomService: RandomService) {
-    console.log('RedComponent :>> ', this.randomService);
-  }
+  // constructor(private randomService: RandomService) {
+  //   console.log('RedComponent :>> ', this.randomService);
+  // }
 }

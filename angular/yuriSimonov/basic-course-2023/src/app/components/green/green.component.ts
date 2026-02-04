@@ -10,12 +10,11 @@ import { RandomService } from '../../services/random.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GreenComponent {
-  // lesson 52
-  constructor(private randomService: RandomService) {
-    console.log('GreenComponent :>> ', this.randomService);
-  }
+  // lesson 42
+  // constructor(private randomService: RandomService) {
+  //   console.log('GreenComponent :>> ', this.randomService);
+  // }
   // color: string = 'green';
-
   // ngAfterViewInit() {
   //   this.color = 'pink';
   // }

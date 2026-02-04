@@ -5,17 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataService {
-  //* сервисы это тоже классы, которые имеют свой собственный декоратор - @Injectable
-
-  private _data: string[] = ['One', 'Two', 'Three'];
-
+  // lesson 44
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this._data;
+    return this.http.get('https://api.coindesk.com/v1/bpi/currentprice.json');
   }
+  //* сервисы это тоже классы, которые имеют свой собственный декоратор - @Injectable
 
-  getUsers() {
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
-  }
+  // private _data: string[] = ['One', 'Two', 'Three'];
+
+  // constructor(private http: HttpClient) {}
+
+  // getData() {
+  //   return this._data;
+  // }
+
+  // getUsers() {
+  //   return this.http.get('https://jsonplaceholder.typicode.com/users');
+  // }
 }

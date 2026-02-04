@@ -102,6 +102,12 @@ import { HttpClient } from '@angular/common/http';
   ],
 })
 export class AppComponent {
+  // lesson 44
+  private dataService = inject(DataService);
+
+  ngOnInit() {
+    this.dataService.getData().subscribe((data) => console.log(data));
+  }
   //* rxjs - это библиотека для работы с асинхронным кодом с помощью класса Observable (поток, поток данных).
   //* Метод pipe() используется для задания различных манипуляций над исходными данными потока, перед тем как они попадут в метод subscribe();
   //* subscribe() используется для получения итоговых данных из потока/для подписки на происходящее событие;
@@ -257,7 +263,6 @@ export class AppComponent {
   // ngAfterViewInit() {
   //   console.log('this.users :>> ', this.users);
   // }
-
   //lesson 39
   // data = {
   //   one: {
@@ -268,30 +273,25 @@ export class AppComponent {
   //     },
   //   },
   // };
-
   // asyncData$ = of(this.data);
-
   // constructor() {}
-
   //lesson 40
-  users$: Observable<any>;
-
-  dataService3 = inject(DataService);
-
-  constructor(
-    private dataService: DataService,
-    // @Inject(DataService) private dataService2: DataService,
-    @Inject(TOKEN) private token: string,
-    // @Inject(USER_RANDOM_SERVICE_TOKEN) private userRandomService: RandomService,
-    // @Inject(ADMIN_RANDOM_SERVICE_TOKEN)
-    // private adminRandomService: RandomService,
-  ) {
-    this.users$ = this.dataService.getUsers();
-    console.log('this.token :>> ', this.token);
-    // console.log('this.dataService :>> ', this.dataService);
-    // console.log('this.dataService2 :>> ', this.dataService2);
-    // console.log('this.dataService3 :>> ', this.dataService3);
-    // console.log('this.userRandomService :>> ', this.userRandomService);
-    // console.log('this.adminRandomService :>> ', this.adminRandomService);
-  }
+  // users$: Observable<any>;
+  // dataService3 = inject(DataService);
+  // constructor(
+  //   // private dataService: DataService,
+  //   // @Inject(DataService) private dataService2: DataService,
+  //   // @Inject(TOKEN) private token: string,
+  //   // @Inject(USER_RANDOM_SERVICE_TOKEN) private userRandomService: RandomService,
+  //   // @Inject(ADMIN_RANDOM_SERVICE_TOKEN)
+  //   // private adminRandomService: RandomService,
+  // ) {
+  //   this.users$ = this.dataService.getUsers();
+  //   console.log('this.token :>> ', this.token);
+  //   // console.log('this.dataService :>> ', this.dataService);
+  //   // console.log('this.dataService2 :>> ', this.dataService2);
+  //   // console.log('this.dataService3 :>> ', this.dataService3);
+  //   // console.log('this.userRandomService :>> ', this.userRandomService);
+  //   // console.log('this.adminRandomService :>> ', this.adminRandomService);
+  // }
 }
