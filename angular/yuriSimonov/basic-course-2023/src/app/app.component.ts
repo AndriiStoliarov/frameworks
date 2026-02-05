@@ -18,7 +18,7 @@ import {
   Observable,
   of,
 } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, formatNumber } from '@angular/common';
 import { DataService } from './services/data.service';
 import { RandomService } from './services/random.service';
 import { UserService } from './services/user.service';
@@ -28,18 +28,19 @@ import {
   USER_RANDOM_SERVICE_TOKEN,
 } from './shared/tokens/tokens';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ChildComponent, AsyncPipe],
+  imports: [ChildComponent, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   // changeDetection: ChangeDetectionStrategy.Default,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     RandomService,
-    DataService,
+    // DataService,
     // {
     //   provide: DataService,
     //   useClass: UserService,
@@ -84,30 +85,47 @@ import { HttpClient } from '@angular/common/http';
     //   useExisting: RandomService,
     // },
     // строка
-    { provide: TOKEN, useValue: 'Какие-то строковые данные', multi: true },
-    // число
-    { provide: TOKEN, useValue: 1, multi: true },
-    // булево
-    { provide: TOKEN, useValue: true, multi: true },
-    // объект
-    { provide: TOKEN, useValue: { name: 'Вася' }, multi: true },
-    // массив
-    { provide: TOKEN, useValue: [1, 2, 3], multi: true },
-    // функция
-    {
-      provide: TOKEN,
-      useValue: () => console.log('Какая-то логика внутри функции'),
-      multi: true,
-    },
+    // { provide: TOKEN, useValue: 'Какие-то строковые данные', multi: true },
+    // // число
+    // { provide: TOKEN, useValue: 1, multi: true },
+    // // булево
+    // { provide: TOKEN, useValue: true, multi: true },
+    // // объект
+    // { provide: TOKEN, useValue: { name: 'Вася' }, multi: true },
+    // // массив
+    // { provide: TOKEN, useValue: [1, 2, 3], multi: true },
+    // // функция
+    // {
+    //   provide: TOKEN,
+    //   useValue: () => console.log('Какая-то логика внутри функции'),
+    //   multi: true,
+    // },
   ],
 })
 export class AppComponent {
-  // lesson 44
-  private dataService = inject(DataService);
+  // lesson 46
+  //* директива ngModel для связывания свойств компонента с данными полей формы.
+
+  username: string = 'Стартовое значение';
+
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit() {
-    this.dataService.getData().subscribe((data) => console.log(data));
+    setTimeout(() => {
+      this.username = 'John Doe';
+      this.cdr.markForCheck();
+    }, 3000);
   }
+
+  ngDoCheck() {
+    console.log('this.username :>> ', this.username);
+  }
+  // lesson 44
+  // private dataService = inject(DataService);
+
+  // ngOnInit() {
+  //   this.dataService.getData().subscribe((data) => console.log(data));
+  // }
   //* rxjs - это библиотека для работы с асинхронным кодом с помощью класса Observable (поток, поток данных).
   //* Метод pipe() используется для задания различных манипуляций над исходными данными потока, перед тем как они попадут в метод subscribe();
   //* subscribe() используется для получения итоговых данных из потока/для подписки на происходящее событие;
