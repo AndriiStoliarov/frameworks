@@ -5,6 +5,7 @@ import {
   inject,
   Inject,
   signal,
+  ViewChild,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './components/child/child.component';
@@ -28,7 +29,7 @@ import {
   USER_RANDOM_SERVICE_TOKEN,
 } from './shared/tokens/tokens';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -106,7 +107,10 @@ export class AppComponent {
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
 
-  username: string = 'Стартовое значение';
+  username: string = '';
+
+  @ViewChild('exampleForm') exampleForm!: NgForm;
+  @ViewChild('exampleInput') exampleInput!: NgModel;
 
   private cdr = inject(ChangeDetectorRef);
 
@@ -119,6 +123,19 @@ export class AppComponent {
 
   ngDoCheck() {
     console.log('this.username :>> ', this.username);
+  }
+
+  ngAfterViewInit() {
+    this.exampleForm.valueChanges?.subscribe((value) => {
+      console.log('exampleForm value :>> ', value);
+    });
+    this.exampleInput.valueChanges?.subscribe((value) => {
+      console.log('exampleInput value :>> ', value);
+    });
+  }
+
+  onSubmit(formValue: NgForm) {
+    console.log('formValue :>> ', formValue);
   }
   // lesson 44
   // private dataService = inject(DataService);
