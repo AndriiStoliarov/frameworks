@@ -104,42 +104,35 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
   ],
 })
 export class AppComponent {
+  // lesson 47: Practice.
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
-
-  username: string = '';
-
-  @ViewChild('exampleForm') exampleForm!: NgForm;
-  @ViewChild('exampleInput') exampleInput!: NgModel;
-
-  private cdr = inject(ChangeDetectorRef);
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.username = 'John Doe';
-      this.cdr.markForCheck();
-    }, 3000);
-  }
-
-  ngDoCheck() {
-    console.log('this.username :>> ', this.username);
-  }
-
-  ngAfterViewInit() {
-    this.exampleForm.valueChanges?.subscribe((value) => {
-      console.log('exampleForm value :>> ', value);
-    });
-    this.exampleInput.valueChanges?.subscribe((value) => {
-      console.log('exampleInput value :>> ', value);
-    });
-  }
-
-  onSubmit(formValue: NgForm) {
-    console.log('formValue :>> ', formValue);
-  }
+  // username: string = '';
+  // @ViewChild('exampleForm') exampleForm!: NgForm;
+  // @ViewChild('exampleInput') exampleInput!: NgModel;
+  // private cdr = inject(ChangeDetectorRef);
+  // ngOnInit() {
+  //   setTimeout(() => {
+  //     this.username = 'John Doe';
+  //     this.cdr.markForCheck();
+  //   }, 3000);
+  // }
+  // ngDoCheck() {
+  //   console.log('this.username :>> ', this.username);
+  // }
+  // ngAfterViewInit() {
+  //   this.exampleForm.valueChanges?.subscribe((value) => {
+  //     console.log('exampleForm value :>> ', value);
+  //   });
+  //   this.exampleInput.valueChanges?.subscribe((value) => {
+  //     console.log('exampleInput value :>> ', value);
+  //   });
+  // }
+  // onSubmit(formValue: NgForm) {
+  //   console.log('formValue :>> ', formValue);
+  // }
   // lesson 44
   // private dataService = inject(DataService);
-
   // ngOnInit() {
   //   this.dataService.getData().subscribe((data) => console.log(data));
   // }

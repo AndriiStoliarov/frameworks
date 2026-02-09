@@ -1,21 +1,101 @@
 :host {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 10px;
+  max-width: 60vw;
+  margin: 12px auto 24px;
 }
-
-form {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+:host h1 {
+  text-align: center;
+  font-size: 1.2rem;
+}
+:host form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 10px;
+  gap: 4px;
+}
+:host div {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+:host label {
+  margin-left: 12px;
+  cursor: pointer;
+}
+:host label.default {
+  cursor: default;
+}
+:host label > * {
+  cursor: pointer;
+}
+:host label span {
+  position: relative;
+  top: -6px;
+  color: red;
+  font-size: 10px;
+}
+:host input,
+:host select,
+:host textarea {
+  border: 2px solid gray;
+  padding: 6px;
+  margin: 6px 0;
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  outline: none;
+}
+:host select {
+  cursor: pointer;
+}
+:host textarea {
+  margin-bottom: 0;
+  resize: none;
+}
+:host *:required.ng-invalid.ng-touched,
+:host *:required.ng-invalid.ng-dirty {
+  border-color: red;
+}
+:host *:required.ng-valid.ng-touched,
+:host *:required.ng-valid.ng-dirty {
+  border-color: rgb(0, 255, 0);
+}
+:host input[type=radio],
+:host input[type=checkbox] {
+  width: auto;
+  margin-right: 6px;
+}
+:host .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 16px;
+}
+:host .buttons button {
+  cursor: pointer;
+  padding: 6px 18px;
+  margin-top: 6px;
+}
+:host .buttons button:disabled {
+  cursor: default;
+}
+:host .error {
+  color: red;
+  font-size: 10px;
+  margin-top: -4px;
+  margin-left: 12px;
 }
