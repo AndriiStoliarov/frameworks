@@ -30,11 +30,12 @@ import {
 } from './shared/tokens/tokens';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ChildComponent, FormsModule],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   // changeDetection: ChangeDetectionStrategy.Default,
@@ -105,6 +106,17 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
 })
 export class AppComponent {
   // lesson 47: Practice.
+  initialUser: User = {
+    name: '',
+    lastName: '',
+    email: '',
+    gender: 'male',
+    country: 'ru',
+    comment: '',
+    agree: true,
+  };
+
+  user: User = structuredClone(this.initialUser);
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
   // username: string = '';

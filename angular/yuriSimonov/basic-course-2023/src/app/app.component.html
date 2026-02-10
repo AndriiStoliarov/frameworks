@@ -1,9 +1,16 @@
 <!-- lesson 47: Practice. -->
 <h1>Создание пользователя</h1>
-<form>
+<form #userForm="ngForm">
   <div>
     <label for="name">Имя<span>*</span>:</label>
-    <input type="text" name="name" id="name" placeholder="Введите имя" />
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Введите имя"
+      [(ngModel)]="user.name"
+      required
+    />
     <p class="error">Имя обязательно</p>
   </div>
 
@@ -14,13 +21,23 @@
       name="lastName"
       id="lastName"
       placeholder="Введите фамилию"
+      [(ngModel)]="user.lastName"
+      required
     />
     <p class="error">Фамилия обязательна</p>
   </div>
 
   <div>
     <label for="email">Email<span>*</span>:</label>
-    <input type="email" name="email" id="email" placeholder="Введите email" />
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="Введите email"
+      [(ngModel)]="user.email"
+      required
+      email
+    />
     <p class="error">Email заполнен неверно</p>
     <p class="error">Этот email уже используется</p>
   </div>
@@ -28,14 +45,28 @@
   <div>
     <label for="default">Пол:</label>
     <div>
-      <label><input type="radio" name="gender" value="male" />Мужской</label>
-      <label><input type="radio" name="gender" value="female" />Женский</label>
+      <label
+        ><input
+          type="radio"
+          name="gender"
+          value="male"
+          [(ngModel)]="user.gender"
+        />Мужской</label
+      >
+      <label
+        ><input
+          type="radio"
+          name="gender"
+          value="female"
+          [(ngModel)]="user.gender"
+        />Женский</label
+      >
     </div>
   </div>
 
   <div>
     <label class="default">Страна:</label>
-    <select name="country">
+    <select name="country" [(ngModel)]="user.country">
       <option value="ru">Россия</option>
       <option value="us">США</option>
       <option value="de">Германия</option>
@@ -48,19 +79,26 @@
       name="comment"
       id="comment"
       placeholder="Введите комментарий"
+      [(ngModel)]="user.comment"
     ></textarea>
   </div>
 
   <div>
     <label>
-      <input type="checkbox" name="agree" />Согласен с условиями
-      использования.<span>*</span>
+      <input
+        type="checkbox"
+        name="agree"
+        [(ngModel)]="user.agree"
+        required
+      />Согласен с условиями использования.<span>*</span>
     </label>
     <p class="error">Необходимо подтвердить согласие.</p>
   </div>
   <div class="buttons">
     <button type="submit">Создать</button>
-    <button type="reset">Сбросить</button>
+    <button type="button" (click)="userForm.resetForm(initialUser)">
+      Сбросить
+    </button>
   </div>
 </form>
 
