@@ -117,6 +117,10 @@ export class AppComponent {
   };
 
   user: User = structuredClone(this.initialUser);
+
+  checkFieldStatus(field: NgModel) {
+    return field.invalid && (field.dirty || field.touched);
+  }
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
   // username: string = '';
