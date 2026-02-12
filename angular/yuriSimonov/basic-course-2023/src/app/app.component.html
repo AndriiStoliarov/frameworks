@@ -1,6 +1,6 @@
 <!-- lesson 47: Practice. -->
 <h1>Создание пользователя</h1>
-<form #userForm="ngForm">
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
   <div>
     <label for="name">Имя<span>*</span>:</label>
     <input
@@ -107,7 +107,7 @@
     }
   </div>
   <div class="buttons">
-    <button type="submit">Создать</button>
+    <button [disabled]="userForm.invalid">Создать</button>
     <button type="button" (click)="userForm.resetForm(initialUser)">
       Сбросить
     </button>

@@ -1,26 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { of } from 'rxjs';
-
-// lesson 43
-@Injectable({
-  providedIn: 'root',
-})
-export class BasicService {
-  private httpInject = inject(HttpClient);
-
-  constructor() {}
-  // constructor(private http: HttpClient) {}
-}
+import { Injectable } from '@angular/core';
+import { User } from '../interfaces/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends BasicService {
-  constructor() {
-    super();
+export class UserService {
+  constructor(private http: HttpClient) {}
+
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>('http://localhost:4201/users', user);
   }
-  // constructor(http: HttpClient) {
-  //   super(http);
-  // }
 }

@@ -118,8 +118,16 @@ export class AppComponent {
 
   user: User = structuredClone(this.initialUser);
 
+  constructor(private userService: UserService) {}
+
   checkFieldStatus(field: NgModel) {
     return field.invalid && (field.dirty || field.touched);
+  }
+
+  onSubmit(userForm: NgForm) {
+    if (userForm.valid) {
+      this.userService.createUser(userForm.value).subscribe();
+    }
   }
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
