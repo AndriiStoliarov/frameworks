@@ -19,6 +19,16 @@
       "country": "ru",
       "comment": "",
       "agree": true
+    },
+    {
+      "id": "afc1",
+      "name": "Вася",
+      "lastName": "Пупкин",
+      "email": "pupok3@gmail.com",
+      "gender": "male",
+      "country": "ru",
+      "comment": "",
+      "agree": true
     }
   ]
 }

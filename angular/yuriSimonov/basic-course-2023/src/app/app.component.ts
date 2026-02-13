@@ -10,7 +10,10 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './components/child/child.component';
 import {
+  catchError,
+  debounceTime,
   delay,
+  EMPTY,
   filter,
   from,
   fromEvent,
@@ -18,6 +21,8 @@ import {
   map,
   Observable,
   of,
+  switchMap,
+  tap,
 } from 'rxjs';
 import { AsyncPipe, formatNumber } from '@angular/common';
 import { DataService } from './services/data.service';
@@ -31,6 +36,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { User } from './interfaces/user';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -118,7 +124,51 @@ export class AppComponent {
 
   user: User = structuredClone(this.initialUser);
 
-  constructor(private userService: UserService) {}
+  enableSubmit = signal(false);
+
+  @ViewChild('emailRef') emailRef!: NgModel;
+
+  constructor(
+    private userService: UserService,
+    private notificationService: NotificationService,
+  ) {}
+
+  ngAfterViewInit() {
+    this.emailRef.valueChanges
+      ?.pipe(
+        //! Добавление отсрочки выполнения запроса на сервер до тех пор, пока пользователь не перестанет печатать, хотя бы в течении одной секунды.
+        debounceTime(1000),
+        //! Чтобы не подписываться в потоке на поток, используй оператор switchMap, который подключается к внутреннему потоку и передает результат/данные внешнему потоку.
+        switchMap((email) => {
+          if (this.emailRef.invalid) {
+            //! Just emits 'complete', and nothing else.
+            return EMPTY;
+          }
+
+          return this.userService.checkEmail(email).pipe(
+            tap((emailTaken) => {
+              if (emailTaken) {
+                this.emailRef.control.setErrors({
+                  emailTaken: true,
+                });
+              } else if (this.emailRef.hasError('emailTaken')) {
+                delete this.emailRef.control.errors?.['emailTaken'];
+              }
+            }),
+          );
+        }),
+        catchError(() => {
+          this.notificationService.error(
+            'Ошибка при проверке email. Попробуйте позже.',
+          );
+
+          return EMPTY;
+        }),
+      )
+      .subscribe((value) => {
+        console.log(value);
+      });
+  }
 
   checkFieldStatus(field: NgModel) {
     return field.invalid && (field.dirty || field.touched);
@@ -128,11 +178,13 @@ export class AppComponent {
     if (userForm.valid) {
       this.userService.createUser(userForm.value).subscribe({
         next: () => {
-          alert('Пользователь успешно создан.');
+          this.notificationService.success('Пользователь успешно создан.');
           userForm.resetForm(this.initialUser);
         },
         error: () => {
-          alert('Ошибка при создании пользователя. Попробуйте позже.');
+          this.notificationService.error(
+            'Ошибка при создании пользователя. Попробуйте позже.',
+          );
         },
       });
     }

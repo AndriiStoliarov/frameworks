@@ -1,4 +1,6 @@
 <!-- lesson 47: Practice. -->
+@let emailTaken = emailRef.hasError("emailTaken");
+
 <h1>Создание пользователя</h1>
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
   <div>
@@ -45,10 +47,12 @@
       email
       #emailRef="ngModel"
     />
-    @if (checkFieldStatus(emailRef)) {
+    @if (checkFieldStatus(emailRef) && !emailTaken) {
       <p class="error">Email заполнен неверно</p>
     }
-    <!-- <p class="error">Этот email уже используется</p> -->
+    @if (emailTaken) {
+      <p class="error">Этот email уже используется</p>
+    }
   </div>
 
   <div>
