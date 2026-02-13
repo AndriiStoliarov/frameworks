@@ -1,15 +1,20 @@
 {
   "users": [
     {
-      "name": "John Doe",
-      "age": 30,
-      "id": "3472"
+      "id": "728f",
+      "name": "Вася",
+      "lastName": "Пупкин",
+      "email": "pupok@gmail.com",
+      "gender": "male",
+      "country": "ru",
+      "comment": "Просто Вася.",
+      "agree": true
     },
     {
-      "id": "08f7",
-      "name": "dsfs",
-      "lastName": "",
-      "email": "",
+      "id": "0bf6",
+      "name": "Вася",
+      "lastName": "Пупкин",
+      "email": "pupok2@gmail.com",
       "gender": "male",
       "country": "ru",
       "comment": "",

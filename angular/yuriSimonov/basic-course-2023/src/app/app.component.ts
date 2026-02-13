@@ -126,7 +126,15 @@ export class AppComponent {
 
   onSubmit(userForm: NgForm) {
     if (userForm.valid) {
-      this.userService.createUser(userForm.value).subscribe();
+      this.userService.createUser(userForm.value).subscribe({
+        next: () => {
+          alert('Пользователь успешно создан.');
+          userForm.resetForm(this.initialUser);
+        },
+        error: () => {
+          alert('Ошибка при создании пользователя. Попробуйте позже.');
+        },
+      });
     }
   }
   // lesson 46
