@@ -111,7 +111,7 @@
     }
   </div>
   <div class="buttons">
-    <button [disabled]="userForm.invalid">Создать</button>
+    <button [disabled]="!enableSubmit()">Создать</button>
     <button type="button" (click)="userForm.resetForm(initialUser)">
       Сбросить
     </button>

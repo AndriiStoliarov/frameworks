@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DestroyRef,
   inject,
   Inject,
   signal,
@@ -11,8 +12,10 @@ import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './components/child/child.component';
 import {
   catchError,
+  combineLatestWith,
   debounceTime,
   delay,
+  distinctUntilChanged,
   EMPTY,
   filter,
   from,
@@ -22,6 +25,7 @@ import {
   Observable,
   of,
   switchMap,
+  takeUntil,
   tap,
 } from 'rxjs';
 import { AsyncPipe, formatNumber } from '@angular/common';
@@ -127,15 +131,20 @@ export class AppComponent {
   enableSubmit = signal(false);
 
   @ViewChild('emailRef') emailRef!: NgModel;
+  @ViewChild('userForm') userForm!: NgForm;
 
   constructor(
     private userService: UserService,
     private notificationService: NotificationService,
+    private destroyRef: DestroyRef,
   ) {}
 
   ngAfterViewInit() {
     this.emailRef.valueChanges
       ?.pipe(
+        tap(() => {
+          this.enableSubmit.set(false);
+        }),
         //! Добавление отсрочки выполнения запроса на сервер до тех пор, пока пользователь не перестанет печатать, хотя бы в течении одной секунды.
         debounceTime(1000),
         //! Чтобы не подписываться в потоке на поток, используй оператор switchMap, который подключается к внутреннему потоку и передает результат/данные внешнему потоку.
@@ -164,9 +173,16 @@ export class AppComponent {
 
           return EMPTY;
         }),
+        combineLatestWith(this.userForm.statusChanges!),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr),
+        ),
+        takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((value) => {
-        console.log(value);
+      .subscribe(([emailTaken, formStatus]) => {
+        console.log(emailTaken);
+
+        this.enableSubmit.set(!emailTaken && formStatus === 'VALID');
       });
   }
 
@@ -175,7 +191,7 @@ export class AppComponent {
   }
 
   onSubmit(userForm: NgForm) {
-    if (userForm.valid) {
+    if (this.enableSubmit()) {
       this.userService.createUser(userForm.value).subscribe({
         next: () => {
           this.notificationService.success('Пользователь успешно создан.');
@@ -185,6 +201,9 @@ export class AppComponent {
           this.notificationService.error(
             'Ошибка при создании пользователя. Попробуйте позже.',
           );
+        },
+        complete: () => {
+          console.log('complete');
         },
       });
     }
