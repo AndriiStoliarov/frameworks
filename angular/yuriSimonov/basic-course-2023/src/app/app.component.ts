@@ -39,6 +39,7 @@ import {
 } from './shared/tokens/tokens';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { User } from './interfaces/user';
 import { NotificationService } from './services/notification.service';
 
@@ -129,6 +130,7 @@ export class AppComponent {
   user: User = structuredClone(this.initialUser);
 
   enableSubmit = signal(false);
+  emailPending = signal(false);
 
   @ViewChild('emailRef') emailRef!: NgModel;
   @ViewChild('userForm') userForm!: NgForm;
@@ -144,6 +146,7 @@ export class AppComponent {
       ?.pipe(
         tap(() => {
           this.enableSubmit.set(false);
+          this.emailPending.set(true);
         }),
         //! Добавление отсрочки выполнения запроса на сервер до тех пор, пока пользователь не перестанет печатать, хотя бы в течении одной секунды.
         debounceTime(1000),
@@ -163,6 +166,8 @@ export class AppComponent {
               } else if (this.emailRef.hasError('emailTaken')) {
                 delete this.emailRef.control.errors?.['emailTaken'];
               }
+
+              this.emailPending.set(false);
             }),
           );
         }),
@@ -174,15 +179,12 @@ export class AppComponent {
           return EMPTY;
         }),
         combineLatestWith(this.userForm.statusChanges!),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr),
-        ),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(([emailTaken, formStatus]) => {
-        console.log(emailTaken);
-
-        this.enableSubmit.set(!emailTaken && formStatus === 'VALID');
+        this.enableSubmit.set(
+          !emailTaken && formStatus === 'VALID' && !this.emailPending(),
+        );
       });
   }
 
@@ -191,22 +193,19 @@ export class AppComponent {
   }
 
   onSubmit(userForm: NgForm) {
-    if (this.enableSubmit()) {
-      this.userService.createUser(userForm.value).subscribe({
-        next: () => {
-          this.notificationService.success('Пользователь успешно создан.');
-          userForm.resetForm(this.initialUser);
-        },
-        error: () => {
-          this.notificationService.error(
-            'Ошибка при создании пользователя. Попробуйте позже.',
-          );
-        },
-        complete: () => {
-          console.log('complete');
-        },
-      });
-    }
+    if (!this.enableSubmit()) return;
+
+    this.userService.createUser(userForm.value).subscribe({
+      next: () => {
+        this.notificationService.success('Пользователь успешно создан.');
+        userForm.resetForm(this.initialUser);
+      },
+      error: () => {
+        this.notificationService.error(
+          'Ошибка при создании пользователя. Попробуйте позже.',
+        );
+      },
+    });
   }
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
