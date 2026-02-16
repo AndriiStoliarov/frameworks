@@ -38,15 +38,24 @@ import {
   USER_RANDOM_SERVICE_TOKEN,
 } from './shared/tokens/tokens';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  NgForm,
+  NgModel,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { User } from './interfaces/user';
 import { NotificationService } from './services/notification.service';
+import { minLengthValidator, requiredValidator } from './validators/sync';
+import { asyncRequiredValidator } from './validators/async';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   // changeDetection: ChangeDetectionStrategy.Default,
@@ -116,97 +125,98 @@ import { NotificationService } from './services/notification.service';
   ],
 })
 export class AppComponent {
+  // lesson 48
+  //! FormControl это ангуляровский класс, который предоставляет одно поле формы с его значением, валидаторами и состоянием.
+  inputField = new FormControl(
+    'Значение по умолчанию',
+    null,
+    asyncRequiredValidator,
+  );
+
+  ngDoCheck() {
+    console.log(this.inputField.errors);
+  }
+
   // lesson 47: Practice.
-  initialUser: User = {
-    name: '',
-    lastName: '',
-    email: '',
-    gender: 'male',
-    country: 'ru',
-    comment: '',
-    agree: true,
-  };
-
-  user: User = structuredClone(this.initialUser);
-
-  enableSubmit = signal(false);
-  emailPending = signal(false);
-
-  @ViewChild('emailRef') emailRef!: NgModel;
-  @ViewChild('userForm') userForm!: NgForm;
-
-  constructor(
-    private userService: UserService,
-    private notificationService: NotificationService,
-    private destroyRef: DestroyRef,
-  ) {}
-
-  ngAfterViewInit() {
-    this.emailRef.valueChanges
-      ?.pipe(
-        tap(() => {
-          this.enableSubmit.set(false);
-          this.emailPending.set(true);
-        }),
-        //! Добавление отсрочки выполнения запроса на сервер до тех пор, пока пользователь не перестанет печатать, хотя бы в течении одной секунды.
-        debounceTime(1000),
-        //! Чтобы не подписываться в потоке на поток, используй оператор switchMap, который подключается к внутреннему потоку и передает результат/данные внешнему потоку.
-        switchMap((email) => {
-          if (this.emailRef.invalid) {
-            //! Just emits 'complete', and nothing else.
-            return EMPTY;
-          }
-
-          return this.userService.checkEmail(email).pipe(
-            tap((emailTaken) => {
-              if (emailTaken) {
-                this.emailRef.control.setErrors({
-                  emailTaken: true,
-                });
-              } else if (this.emailRef.hasError('emailTaken')) {
-                delete this.emailRef.control.errors?.['emailTaken'];
-              }
-
-              this.emailPending.set(false);
-            }),
-          );
-        }),
-        catchError(() => {
-          this.notificationService.error(
-            'Ошибка при проверке email. Попробуйте позже.',
-          );
-
-          return EMPTY;
-        }),
-        combineLatestWith(this.userForm.statusChanges!),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(([emailTaken, formStatus]) => {
-        this.enableSubmit.set(
-          !emailTaken && formStatus === 'VALID' && !this.emailPending(),
-        );
-      });
-  }
-
-  checkFieldStatus(field: NgModel) {
-    return field.invalid && (field.dirty || field.touched);
-  }
-
-  onSubmit(userForm: NgForm) {
-    if (!this.enableSubmit()) return;
-
-    this.userService.createUser(userForm.value).subscribe({
-      next: () => {
-        this.notificationService.success('Пользователь успешно создан.');
-        userForm.resetForm(this.initialUser);
-      },
-      error: () => {
-        this.notificationService.error(
-          'Ошибка при создании пользователя. Попробуйте позже.',
-        );
-      },
-    });
-  }
+  // initialUser: User = {
+  //   name: '',
+  //   lastName: '',
+  //   email: '',
+  //   gender: 'male',
+  //   country: 'ru',
+  //   comment: '',
+  //   agree: true,
+  // };
+  // user: User = structuredClone(this.initialUser);
+  // enableSubmit = signal(false);
+  // emailPending = signal(false);
+  // @ViewChild('emailRef') emailRef!: NgModel;
+  // @ViewChild('userForm') userForm!: NgForm;
+  // constructor(
+  //   private userService: UserService,
+  //   private notificationService: NotificationService,
+  //   private destroyRef: DestroyRef,
+  // ) {}
+  // ngAfterViewInit() {
+  //   this.emailRef.valueChanges
+  //     ?.pipe(
+  //       tap(() => {
+  //         this.enableSubmit.set(false);
+  //         this.emailPending.set(true);
+  //       }),
+  //       //! Добавление отсрочки выполнения запроса на сервер до тех пор, пока пользователь не перестанет печатать, хотя бы в течении одной секунды.
+  //       debounceTime(1000),
+  //       //! Чтобы не подписываться в потоке на поток, используй оператор switchMap, который подключается к внутреннему потоку и передает результат/данные внешнему потоку.
+  //       switchMap((email) => {
+  //         if (this.emailRef.invalid) {
+  //           //! Just emits 'complete', and nothing else.
+  //           return EMPTY;
+  //         }
+  //         return this.userService.checkEmail(email).pipe(
+  //           tap((emailTaken) => {
+  //             if (emailTaken) {
+  //               this.emailRef.control.setErrors({
+  //                 emailTaken: true,
+  //               });
+  //             } else if (this.emailRef.hasError('emailTaken')) {
+  //               delete this.emailRef.control.errors?.['emailTaken'];
+  //             }
+  //             this.emailPending.set(false);
+  //           }),
+  //         );
+  //       }),
+  //       catchError(() => {
+  //         this.notificationService.error(
+  //           'Ошибка при проверке email. Попробуйте позже.',
+  //         );
+  //         return EMPTY;
+  //       }),
+  //       combineLatestWith(this.userForm.statusChanges!),
+  //       takeUntilDestroyed(this.destroyRef),
+  //     )
+  //     .subscribe(([emailTaken, formStatus]) => {
+  //       this.enableSubmit.set(
+  //         !emailTaken && formStatus === 'VALID' && !this.emailPending(),
+  //       );
+  //     });
+  // }
+  // checkFieldStatus(field: NgModel) {
+  //   return field.invalid && (field.dirty || field.touched);
+  // }
+  // onSubmit(userForm: NgForm) {
+  //   if (!this.enableSubmit()) return;
+  //   this.userService.createUser(userForm.value).subscribe({
+  //     next: () => {
+  //       this.notificationService.success('Пользователь успешно создан.');
+  //       userForm.resetForm(this.initialUser);
+  //     },
+  //     error: () => {
+  //       this.notificationService.error(
+  //         'Ошибка при создании пользователя. Попробуйте позже.',
+  //       );
+  //     },
+  //   });
+  // }
   // lesson 46
   //* директива ngModel для связывания свойств компонента с данными полей формы.
   // username: string = '';

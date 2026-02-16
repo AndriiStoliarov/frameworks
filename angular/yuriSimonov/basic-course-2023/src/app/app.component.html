@@ -1,5 +1,15 @@
+<!-- lesson 48 -->
+<input type="text" [formControl]="inputField" />
+<p>Состояние valid: {{ inputField.valid }}</p>
+<p>Значение по умолчанию: {{ inputField.value }}</p>
+
+<button (click)="inputField.setValue('Новое значение')">
+  Обновить значение
+</button>
+<button (click)="inputField.reset()">Сбросить значение</button>
+
 <!-- lesson 47: Practice. -->
-@let emailTaken = emailRef.hasError("emailTaken");
+<!-- @let emailTaken = emailRef.hasError("emailTaken");
 
 <h1>Создание пользователя</h1>
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
@@ -116,7 +126,7 @@
       Сбросить
     </button>
   </div>
-</form>
+</form> -->
 
 <!-- lesson 46 -->
 <!-- <input type="text" name="username" id="username" [(ngModel)]="username" /> -->
