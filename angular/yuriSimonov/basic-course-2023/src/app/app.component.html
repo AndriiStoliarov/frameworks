@@ -1,3 +1,33 @@
+<!-- lesson 49 -->
+@let secondInput = reactiveForm.get("secondUnput");
+
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit(reactiveForm.value)">
+  <h2>Реактивна форма</h2>
+  <input type="text" formControlName="firstInput" />
+  <app-custom-input formControlName="secondInput"></app-custom-input>
+
+  <button>Отправить</button>
+  <button
+    type="button"
+    (click)="
+      secondInput?.disabled ? secondInput?.enable() : secondInput?.disable()
+    "
+  >
+    Переключить disabled
+  </button>
+</form>
+
+<form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+  <h2>Шаблонная форма</h2>
+  <input type="text" [(ngModel)]="templateForm.firstInput" name="firstInput" />
+  <app-custom-input
+    [(ngModel)]="templateForm.secondInput"
+    name="secondInput"
+    minlength="5"
+  ></app-custom-input>
+
+  <button>Отправить</button>
+</form>
 <!-- lesson 48 -->
 <!-- <input type="text" [formControl]="inputField" />
 <p>Состояние valid: {{ inputField.valid }}</p>
@@ -8,7 +38,7 @@
 </button>
 <button (click)="inputField.reset()">Сбросить значение</button> -->
 
-<form [formGroup]="exampleFormFB">
+<!-- <form [formGroup]="exampleFormFB">
   <label for="name">Имя: </label>
   <input id="name" type="text" formControlName="name" />
   <label for="age">Возраст: </label>
@@ -33,7 +63,7 @@
 
     <button type="button" (click)="addPet()">+ Добавить питомца</button>
   </div>
-</form>
+</form> -->
 
 <!-- <button (click)="exampleForm.setValue({ name: 'Петр', age: 27 })">
   Метод setValue
