@@ -1,12 +1,50 @@
 <!-- lesson 48 -->
-<input type="text" [formControl]="inputField" />
+<!-- <input type="text" [formControl]="inputField" />
 <p>Состояние valid: {{ inputField.valid }}</p>
 <p>Значение по умолчанию: {{ inputField.value }}</p>
 
 <button (click)="inputField.setValue('Новое значение')">
   Обновить значение
 </button>
-<button (click)="inputField.reset()">Сбросить значение</button>
+<button (click)="inputField.reset()">Сбросить значение</button> -->
+
+<form [formGroup]="exampleFormFB">
+  <label for="name">Имя: </label>
+  <input id="name" type="text" formControlName="name" />
+  <label for="age">Возраст: </label>
+  <input id="age" type="text" formControlName="age" />
+
+  <div formGroupName="address">
+    <h2>Адрес</h2>
+    <label for="street">Улица: </label>
+    <input id="street" type="text" formControlName="street" />
+    <label for="city">Город: </label>
+    <input id="city" type="text" formControlName="city" />
+  </div>
+
+  <div formArrayName="pets">
+    <h2>Домашние питомцы</h2>
+    @for (pets of pets.controls; track $index; let i = $index) {
+      <div>
+        <label for="pets-{{ i }}">Питомец:</label>
+        <input id="pets-{{ i }}" type="text" [formControlName]="i" />
+      </div>
+    }
+
+    <button type="button" (click)="addPet()">+ Добавить питомца</button>
+  </div>
+</form>
+
+<!-- <button (click)="exampleForm.setValue({ name: 'Петр', age: 27 })">
+  Метод setValue
+</button>
+<button (click)="exampleForm.patchValue({ name: 'Иван' })">
+  Метод patchValue
+</button>
+<button (click)="exampleForm.get('name')?.setValue('Сергей')">
+  Метод get + setValue
+</button>
+<button (click)="exampleForm.reset()">Метод reset</button> -->
 
 <!-- lesson 47: Practice. -->
 <!-- @let emailTaken = emailRef.hasError("emailTaken");

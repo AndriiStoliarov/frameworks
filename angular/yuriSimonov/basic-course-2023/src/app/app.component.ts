@@ -39,7 +39,10 @@ import {
 } from './shared/tokens/tokens';
 import { HttpClient } from '@angular/common/http';
 import {
+  FormArray,
+  FormBuilder,
   FormControl,
+  FormGroup,
   FormsModule,
   NgForm,
   NgModel,
@@ -127,14 +130,59 @@ import { asyncRequiredValidator } from './validators/async';
 export class AppComponent {
   // lesson 48
   //! FormControl это ангуляровский класс, который предоставляет одно поле формы с его значением, валидаторами и состоянием.
-  inputField = new FormControl(
-    'Значение по умолчанию',
-    null,
-    asyncRequiredValidator,
-  );
+  // inputField = new FormControl(
+  //   'Значение по умолчанию',
+  //   null,
+  //   asyncRequiredValidator,
+  // );
+  // inputField = new FormControl('Значение по умолчанию', {
+  //   validators: [Validators.required, Validators.minLength(3)],
+  //   asyncValidators: asyncRequiredValidator,
+  // });
+
+  exampleForm = new FormGroup({
+    name: new FormControl('Вася'),
+    age: new FormControl(20),
+    address: new FormGroup({
+      street: new FormControl('улица Ленина'),
+      city: new FormControl('Москва'),
+    }),
+    pets: new FormArray([new FormControl('Мурзик'), new FormControl('Барсик')]),
+  });
+
+  exampleFormFB = this.fb.group({
+    name: ['Вася', Validators.required, asyncRequiredValidator],
+    age: [
+      20,
+      {
+        validators: [requiredValidator, minLengthValidator(2)],
+      },
+    ],
+    address: this.fb.group({
+      street: ['улица Ленина'],
+      city: ['Москва'],
+    }),
+    // pets: this.fb.array([this.fb.control('Мурзик'), this.fb.control('Барсик')]),
+    pets: this.fb.array(['Мурзик', 'Барсик']),
+  });
+
+  get pets() {
+    return this.exampleFormFB.get('pets') as FormArray;
+  }
+
+  //! методы FormBuilder:
+  // control - для создания отдельного поля формы;
+  // group - для создания группы полей или формы;
+  // array - для создания динамических полей формы;
+  constructor(private fb: FormBuilder) {}
+
+  addPet() {
+    this.pets.push(this.fb.control(''));
+  }
 
   ngDoCheck() {
-    console.log(this.inputField.errors);
+    // console.log(this.inputField.errors);
+    console.log('pets :>> ', this.pets.value);
   }
 
   // lesson 47: Practice.
