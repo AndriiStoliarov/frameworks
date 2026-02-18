@@ -10,3 +10,5 @@
 Уроки по Angular для начинающих. Здесь вы найдете много важной информации как по самому фреймворку Angular, так и по библиотеке RxJS.
 
 Ссылка на видео курс: [YouTube](https://www.youtube.com/watch?v=fcsg0RzKrm8&list=PL2bJ6t_D6_KSSiM2Y8T32-5KgaNzzS4R6&index=1)
+
+Ссылка на проект Helper: [GitHub](https://yuri-simonov.github.io/Helper/)
