@@ -1,0 +1,26 @@
+input {
+  border: 2px solid gray;
+  padding: 6px;
+  margin: 6px 0;
+  width: 100%;
+
+  border-radius: 6px;
+  margin-bottom: 6px;
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  button {
+    cursor: pointer;
+    padding: 6px 18px;
+    margin-top: 6px;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+}

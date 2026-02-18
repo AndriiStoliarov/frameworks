@@ -3,30 +3,42 @@
 
 <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit(reactiveForm.value)">
   <h2>Реактивна форма</h2>
-  <input type="text" formControlName="firstInput" />
-  <app-custom-input formControlName="secondInput"></app-custom-input>
+  <div class="fields">
+    <input type="text" formControlName="firstInput" />
+    <app-custom-input formControlName="secondInput"></app-custom-input>
+  </div>
 
-  <button>Отправить</button>
-  <button
-    type="button"
-    (click)="
-      secondInput?.disabled ? secondInput?.enable() : secondInput?.disable()
-    "
-  >
-    Переключить disabled
-  </button>
+  <div class="buttons">
+    <button>Отправить</button>
+    <button
+      type="button"
+      (click)="
+        secondInput?.disabled ? secondInput?.enable() : secondInput?.disable()
+      "
+    >
+      Переключить disabled
+    </button>
+  </div>
 </form>
 
 <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
   <h2>Шаблонная форма</h2>
-  <input type="text" [(ngModel)]="templateForm.firstInput" name="firstInput" />
-  <app-custom-input
-    [(ngModel)]="templateForm.secondInput"
-    name="secondInput"
-    minlength="5"
-  ></app-custom-input>
+  <div class="fields">
+    <input
+      type="text"
+      [(ngModel)]="templateForm.firstInput"
+      name="firstInput"
+    />
+    <app-custom-input
+      [(ngModel)]="templateForm.secondInput"
+      name="secondInput"
+      minlength="5"
+    ></app-custom-input>
+  </div>
 
-  <button>Отправить</button>
+  <div class="buttons">
+    <button>Отправить</button>
+  </div>
 </form>
 <!-- lesson 48 -->
 <!-- <input type="text" [formControl]="inputField" />
