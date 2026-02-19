@@ -8,4 +8,4 @@ Basic course on Angular.
 
 ## dinsTheProger
 
-Angular course for beginners
+Angular course for beginners.
