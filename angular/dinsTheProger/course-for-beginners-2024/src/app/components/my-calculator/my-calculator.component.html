@@ -1,0 +1,13 @@
+<div class="calculator">
+  <input type="text" class="calculator__input" />
+  <select>
+    <option value=""></option>
+  </select>
+  <input type="text" class="calculator__input" />
+
+  <span class="calculator__result"
+    >{{ result ? result : "Нажмите рассчитать!" }}
+  </span>
+
+  <button (click)="calc()">Рассчитать</button>
+</div>
