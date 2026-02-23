@@ -37,8 +37,46 @@ enum CalcModifiers {
 export class MyCalculatorComponent {
   public calcOperations = CalcOperations;
   public calcModifiers = CalcModifiers;
+  public calcGroups: CalcGroup[] = [
+    {
+      first: {
+        value: 5,
+        modificator: CalcModifiers.none,
+      },
+      second: {
+        value: 5,
+        modificator: CalcModifiers.none,
+      },
+      operation: CalcOperations.plus,
+    },
+  ];
+  public history: string[] = [];
+  public operationsBetweenGroups: CalcOperations[] = [];
   // public result: number | undefined = undefined;
   public result?: number;
+  public addGroup(): void {
+    this.calcGroups.push({
+      first: {
+        value: 0,
+        modificator: CalcModifiers.none,
+      },
+      second: {
+        value: 0,
+        modificator: CalcModifiers.none,
+      },
+      operation: CalcOperations.plus,
+    });
+
+    this.operationsBetweenGroups.push(CalcOperations.plus);
+  }
+
+  public removeGroup(index: number): void {
+    this.calcGroups.splice(index, 1);
+  }
+
+  public calcGroup() {}
+
+  public calcValueWithModif() {}
 
   public calc() {
     switch (this.operation) {
