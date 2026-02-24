@@ -61,8 +61,15 @@
     >{{ result ? result : "Нажмите рассчитать!" }}
   </span>
 
+  <div class="calculator__history">
+    <span class="calculator__history-title">История операций:</span>
+    <span *ngFor="let obj of history; let i = index"
+      >{{ i + 1 }} {{ obj }}</span
+    >
+  </div>
+
   <div>
-    <button class="calculator__btn">Рассчитать</button>
+    <button class="calculator__btn" (click)="calcGroup()">Рассчитать</button>
     <button class="calculator__btn" (click)="addGroup()">
       Добавить группу
     </button>

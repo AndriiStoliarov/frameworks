@@ -74,24 +74,72 @@ export class MyCalculatorComponent {
     this.calcGroups.splice(index, 1);
   }
 
-  public calcGroup() {}
+  public calcGroup() {
+    let result = 0;
+    let tempHistory: string[] = [];
+    this.calcGroups.forEach((group, i) => {
+      if (i === 0) {
+        result = this.calc(
+          this.calcValueWithModif(group.first),
+          this.calcValueWithModif(group.second),
+          group.operation,
+        );
+      } else {
+        let tempResult = this.calc(
+          this.calcValueWithModif(group.first),
+          this.calcValueWithModif(group.second),
+          group.operation,
+        );
+        result = this.calc(
+          result,
+          tempResult,
+          this.operationsBetweenGroups[i - 1],
+        );
+      }
 
-  public calcValueWithModif() {}
+      tempHistory.push(
+        `
+          (
+          ${group.first.modificator !== CalcModifiers.none ? group.first.modificator : ''} ${group.first.value}
+          ${group.operation}
+          ${group.second.modificator !== CalcModifiers.none ? group.second.modificator : ''} ${group.second.value}
+          )
+          `,
+      );
+    });
 
-  public calc() {
-    switch (this.operation) {
-      case '+':
-        this.result = this.first + this.second;
-        break;
-      case '-':
-        this.result = this.first - this.second;
-        break;
-      case '*':
-        this.result = this.first * this.second;
-        break;
-      case '/':
-        this.result = this.first / this.second;
-        break;
+    tempHistory.push(`= ${result}`);
+    this.history.push(tempHistory.join(' '));
+    this.result = result;
+  }
+
+  public calcValueWithModif(value: CalcVar): number {
+    switch (value.modificator) {
+      case CalcModifiers.none:
+        return value.value;
+      case CalcModifiers.cos:
+        return Math.cos(value.value);
+      case CalcModifiers.sin:
+        return Math.sin(value.value);
+      case CalcModifiers.square:
+        return Math.pow(value.value, 2);
+    }
+  }
+
+  public calc(
+    first: number,
+    second: number,
+    operation: CalcOperations,
+  ): number {
+    switch (operation) {
+      case CalcOperations.plus:
+        return first + second;
+      case CalcOperations.minus:
+        return first - second;
+      case CalcOperations.multiply:
+        return first * second;
+      case CalcOperations.divide:
+        return first / second;
     }
   }
 }
