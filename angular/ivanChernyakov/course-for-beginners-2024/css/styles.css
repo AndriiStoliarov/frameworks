@@ -1,9 +1,45 @@
+@font-face {
+  font-display: swap;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/assets/fonts/JetBrainsMono-Medium.woff2") format("woff2");
+}
 :root {
   --dark-color: #000000;
   --light-color: #ffffff;
+  --primary-color: #ae7aff;
 }
 
 body {
+  font-family: "JetBrains Mono", serif-serif;
   background: var(--dark-color);
   color: var(--light-color);
+}
+
+.skill-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--light-color);
+  display: inline;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-right: 4px;
+}
+
+.btn {
+  border: none;
+  background: var(--primary-color);
+  color: var(--dark-color);
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.h6 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 800;
 }
