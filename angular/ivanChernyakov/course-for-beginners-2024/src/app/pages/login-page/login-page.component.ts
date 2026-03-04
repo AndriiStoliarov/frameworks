@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
+import { AuthForm } from '../../auth/interfaces/auth-form';
 
 @Component({
   selector: 'app-login-page',
@@ -9,12 +16,18 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
-  form = new FormGroup({
-    username: new FormControl(null),
-    password: new FormControl(null),
+  authService: AuthService = inject(AuthService);
+
+  form: FormGroup = new FormGroup<AuthForm>({
+    password: new FormControl(null, Validators.required),
+    username: new FormControl(null, Validators.required),
   });
 
   onSubmit(): void {
-    console.log('this.form.value :>> ', this.form.value);
+    if (this.form.valid) {
+      console.log('this.form.value :>> ', this.form.value);
+      //@ts-ignore
+      this.authService.login(this.form.value);
+    }
   }
 }
