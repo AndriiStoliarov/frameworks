@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
-import { AuthForm } from '../../auth/interfaces/auth-form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -17,17 +17,22 @@ import { AuthForm } from '../../auth/interfaces/auth-form';
 })
 export class LoginPageComponent {
   authService: AuthService = inject(AuthService);
+  router = inject(Router);
 
-  form: FormGroup = new FormGroup<AuthForm>({
-    password: new FormControl(null, Validators.required),
-    username: new FormControl(null, Validators.required),
+  // iCherniakov;
+  // C4TaAro6Cg;
+
+  form: FormGroup = new FormGroup({
+    password: new FormControl<string | null>(null, Validators.required),
+    username: new FormControl<string | null>(null, Validators.required),
   });
 
   onSubmit(): void {
     if (this.form.valid) {
-      console.log('this.form.value :>> ', this.form.value);
-      //@ts-ignore
-      this.authService.login(this.form.value);
+      // @ts-ignore
+      this.authService.login(this.form.value).subscribe((res) => {
+        this.router.navigate(['']);
+      });
     }
   }
 }
