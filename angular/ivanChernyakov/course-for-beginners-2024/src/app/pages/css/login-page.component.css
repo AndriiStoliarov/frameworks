@@ -7,3 +7,29 @@
           align-items: center;
   margin: 0 5%;
 }
+
+.login-form {
+  width: 440px;
+}
+
+.login-form,
+.big-logo {
+  place-self: center;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-eye-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7490196078);
+  cursor: pointer;
+}
