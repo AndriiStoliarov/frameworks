@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -21,6 +21,8 @@ export class LoginPageComponent {
 
   // iCherniakov;
   // C4TaAro6Cg;
+
+  isPasswordVisible = signal<boolean>(false);
 
   form: FormGroup = new FormGroup({
     password: new FormControl<string | null>(null, Validators.required),

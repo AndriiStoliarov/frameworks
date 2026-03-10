@@ -10,9 +10,7 @@
 
 .menu-item {
   padding: 16px 12px;
-
-  &:hover,
-  &:focus-visible {
-    background: var(--dark-hover-color);
-  }
+}
+.menu-item:hover, .menu-item:focus-visible {
+  background: var(--dark-hover-color);
 }

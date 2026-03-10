@@ -33,3 +33,7 @@
   color: rgba(255, 255, 255, 0.7490196078);
   cursor: pointer;
 }
+
+.password-eye-btn.active {
+  color: var(--primary-color);
+}
