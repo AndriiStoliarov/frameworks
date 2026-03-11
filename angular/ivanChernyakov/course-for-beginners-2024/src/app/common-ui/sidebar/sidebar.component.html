@@ -1,9 +1,16 @@
-<img src="/assets/svg/logo/logo-small.svg" alt="" class="ml16 mb20" />
+<img src="/assets/svg/logo-small.svg" alt="" class="ml16 mb20" />
 
 <nav>
   <ul class="main-menu-list">
-    <li>
-      <button class="menu-item"></button>
+    <li *ngFor="let menuItem of menuItems">
+      <button class="menu-item">
+        <svg [icon]="menuItem.icon"></svg>
+        <span>{{ menuItem.label }}</span>
+      </button>
     </li>
   </ul>
 </nav>
+
+<p class="medium-text mb20">Подписчики</p>
+
+<app-subscriber-card></app-subscriber-card>

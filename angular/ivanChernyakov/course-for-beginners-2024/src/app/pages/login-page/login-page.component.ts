@@ -19,9 +19,6 @@ export class LoginPageComponent {
   authService: AuthService = inject(AuthService);
   router = inject(Router);
 
-  // iCherniakov;
-  // C4TaAro6Cg;
-
   isPasswordVisible = signal<boolean>(false);
 
   form: FormGroup = new FormGroup({
