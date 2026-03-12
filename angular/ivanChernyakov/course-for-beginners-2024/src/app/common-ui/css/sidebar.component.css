@@ -41,3 +41,23 @@
   width: 16px;
   height: 16px;
 }
+
+.to-subscribers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.to-subscribers-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.to-subscribers-icon {
+  width: 18px;
+  height: 18px;
+}
