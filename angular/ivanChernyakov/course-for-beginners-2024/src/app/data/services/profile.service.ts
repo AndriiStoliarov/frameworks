@@ -11,14 +11,16 @@ export class ProfileService {
   http: HttpClient = inject(HttpClient);
   baseApiUrl: string = 'https://icherniakov.ru/yt-course/';
 
-  // me = signal<Profile>;
+  me = signal<Profile | null>(null);
 
   getTestAccount() {
     return this.http.get<Profile[]>(`${this.baseApiUrl}account/test_accounts`);
   }
 
   getMe() {
-    return this.http.get<Profile>(`${this.baseApiUrl}account/me`);
+    return this.http
+      .get<Profile>(`${this.baseApiUrl}account/me`)
+      .pipe(tap((res) => this.me.set(res)));
   }
 
   getSubscribersShortList() {
