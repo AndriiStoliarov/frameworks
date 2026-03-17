@@ -1,6 +1,8 @@
 :host {
   display: block;
   padding: 20px 12px;
+  position: relative;
+  background: var(--dark-color);
 }
 
 .main-menu-list {
@@ -58,11 +60,14 @@
 }
 
 .to-subscribers-icon {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
 }
 
 .sidebar__footer {
+  position: absolute;
+  width: calc(100% - 20px);
+  bottom: 20px;
   background: var(--dark-hover-color);
   border-radius: 2px;
   padding: 4px 16px;
@@ -84,6 +89,6 @@
 }
 
 .settings-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
 }
