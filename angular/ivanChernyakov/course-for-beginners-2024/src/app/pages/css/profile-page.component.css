@@ -8,6 +8,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 24px;
 }
 
 .to-setting-btn {
@@ -26,4 +27,63 @@
   width: 16px;
   height: 16px;
   color: var(--dark-color);
+}
+
+.profile-page__body {
+  padding: 24px;
+  display: grid;
+  grid-gap: 64px;
+  grid-template-columns: 1fr 350px;
+}
+
+.subscribers-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+}
+
+.subscriber-avatar-btn img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.to-subscribers-search {
+  border-radius: 50%;
+  background: var(--light-color);
+  width: 14px;
+  height: 14px;
+  position: relative;
+}
+.to-subscribers-search::before, .to-subscribers-search::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  background: var(--dark-color);
+}
+.to-subscribers-search::before {
+  -webkit-transform: translateY(-50%) translateX(-50%);
+      -ms-transform: translateY(-50%) translateX(-50%);
+          transform: translateY(-50%) translateX(-50%);
+}
+.to-subscribers-search::after {
+  -webkit-transform: translateY(-50%) translateX(-50%) rotate(90deg);
+      -ms-transform: translateY(-50%) translateX(-50%) rotate(90deg);
+          transform: translateY(-50%) translateX(-50%) rotate(90deg);
+}
+
+.stack-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 4px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
