@@ -15,7 +15,14 @@ export class AvatarUploadComponent {
   fileBrowserHandler(event: Event) {
     const file: File | undefined = (event.target as HTMLInputElement)
       ?.files?.[0];
+    this.processFile(file);
+  }
 
+  onFileDropped(file: File): void {
+    this.processFile(file);
+  }
+
+  processFile(file: File | null | undefined): void {
     if (!file || !file.type.match('image')) return;
 
     const reader: FileReader = new FileReader();
