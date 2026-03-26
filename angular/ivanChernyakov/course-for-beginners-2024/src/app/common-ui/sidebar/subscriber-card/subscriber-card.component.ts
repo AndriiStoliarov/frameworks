@@ -11,23 +11,4 @@ import { ImgUrlPipe } from '../../../helpers/pipes/img-url.pipe';
 })
 export class SubscriberCardComponent {
   @Input() profile!: Profile;
-
-  // constructor() {
-  //   console.log('constructor - profile :>> ', this.profile);
-  // }
-
-  ngOnInit(changes: SimpleChanges) {
-    console.log('changes :>> ', changes);
-    console.log('ngOnInit - profile :>> ', this.profile);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('changes :>> ', changes);
-    console.log('ngChChanges - profile :>> ', this.profile);
-  }
-
-  ngAfterViewInit(changes: SimpleChanges) {
-    console.log('changes :>> ', changes);
-    console.log('ngAfterViewInit - profile :>> ', this.profile);
-  }
 }
