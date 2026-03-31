@@ -32,11 +32,11 @@
   border-radius: 2px;
   text-decoration: none;
 }
-.menu-item:hover, .menu-item:focus-visible {
+.menu-item.active, .menu-item:hover, .menu-item:focus-visible {
   background: var(--dark-hover-color);
   color: var(--primary-color);
 }
-.menu-item:hover .menu-item svg, .menu-item:focus-visible .menu-item svg {
+.menu-item.active .menu-item svg, .menu-item:hover .menu-item svg, .menu-item:focus-visible .menu-item svg {
   color: var(--primary-color);
 }
 

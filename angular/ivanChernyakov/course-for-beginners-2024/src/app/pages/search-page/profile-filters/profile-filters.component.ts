@@ -1,0 +1,21 @@
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-profile-filters',
+  standalone: true,
+  imports: [ReactiveFormsModule],
+  templateUrl: './profile-filters.component.html',
+  styleUrl: './profile-filters.component.scss',
+})
+export class ProfileFiltersComponent {
+  fb: FormBuilder = inject(FormBuilder);
+
+  searchForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    stack: [''],
+  });
+
+  constructor() {}
+}
