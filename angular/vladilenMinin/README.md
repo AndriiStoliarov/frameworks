@@ -12,6 +12,6 @@
 
 Angular 14. Быстрый курс 2022.
 
-Ссылка на видео курс: [YouTube](https://www.youtube.com/watch?v=yCIti018Srw&list=WL&index=3&t=6261s)
+Ссылка на видео курс: [YouTube](https://youtu.be/yCIti018Srw)
 
 Ссылка на проект: [GitHub](https://github.com/vladilenm/angular-fast-2022)
