@@ -2,6 +2,8 @@ import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductComponents } from './components/product/product.component';
+import { IProduct } from './models/product';
+import { products as data } from './data/products';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +15,6 @@ import { ProductComponents } from './components/product/product.component';
 })
 export class AppComponent {
   title = 'angular app';
+
+  products: IProduct[] = data;
 }
