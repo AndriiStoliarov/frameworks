@@ -1,15 +1,32 @@
-import { TitleCasePipe, NgForOf, AsyncPipe } from '@angular/common';
+import { TitleCasePipe, NgForOf, AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductComponents } from './components/product/product.component';
 import { IProduct } from './models/product';
-import { ProductsService } from './models/products.service';
-import { Observable } from 'rxjs';
+import { ProductsService } from './services/products.service';
+import { Observable, tap } from 'rxjs';
+import { GlobalErrorComponent } from './components/global-error/global-error.component';
+import { FormsModule } from '@angular/forms';
+import { FilterProductsPipe } from './pipes/filter-products.pipe';
+import { ModalComponent } from './components/modal/modal.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TitleCasePipe, ProductComponents, NgForOf, AsyncPipe],
+  imports: [
+    RouterOutlet,
+    TitleCasePipe,
+    ProductComponents,
+    NgForOf,
+    AsyncPipe,
+    NgIf,
+    GlobalErrorComponent,
+    FormsModule,
+    FilterProductsPipe,
+    ModalComponent,
+    CreateProductComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,13 +35,20 @@ export class AppComponent implements OnInit {
   title = 'angular app';
   products$: Observable<IProduct[]>;
   // products: IProduct[] = [];
+  loading = false;
+  term: string = '';
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.products$ = this.productsService.getAll();
+    this.loading = true;
+    this.products$ = this.productsService
+      .getAll()
+      //оператор tap не изменяет, не трансформирует данные, он добавляет функционал.
+      .pipe(tap(() => (this.loading = false)));
     // this.productsService.getAll().subscribe((products) => {
     //   this.products = products;
+    //   this.loading = false;
     // });
   }
 }
