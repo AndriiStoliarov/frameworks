@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterProductsPipe } from './pipes/filter-products.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,10 @@ export class AppComponent implements OnInit {
   loading = false;
   term: string = '';
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    public modalService: ModalService,
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;

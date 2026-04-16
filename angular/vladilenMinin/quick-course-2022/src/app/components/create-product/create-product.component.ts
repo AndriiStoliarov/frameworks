@@ -6,11 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { FocusDirective } from '../../directives/focus.directive';
 
 @Component({
   selector: 'app-create-product',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, FocusDirective],
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.scss',
 })
