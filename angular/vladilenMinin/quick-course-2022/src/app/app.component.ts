@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -9,6 +9,5 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   imports: [RouterOutlet, GlobalErrorComponent, NavigationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}
