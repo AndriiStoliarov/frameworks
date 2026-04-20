@@ -1,55 +1,14 @@
-import { TitleCasePipe, NgForOf, AsyncPipe, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ProductComponents } from './components/product/product.component';
-import { IProduct } from './models/product';
-import { ProductsService } from './services/products.service';
-import { Observable, tap } from 'rxjs';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
-import { FormsModule } from '@angular/forms';
-import { FilterProductsPipe } from './pipes/filter-products.pipe';
-import { ModalComponent } from './components/modal/modal.component';
-import { CreateProductComponent } from './components/create-product/create-product.component';
-import { ModalService } from './services/modal.service';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    TitleCasePipe,
-    ProductComponents,
-    NgForOf,
-    AsyncPipe,
-    NgIf,
-    GlobalErrorComponent,
-    FormsModule,
-    FilterProductsPipe,
-    ModalComponent,
-    CreateProductComponent,
-  ],
+  imports: [RouterOutlet, GlobalErrorComponent, NavigationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
-  title = 'angular app';
-  // products$: Observable<IProduct[]>;
-  // products: IProduct[] = [];
-  loading = false;
-  term: string = '';
-
-  constructor(
-    public productsService: ProductsService,
-    public modalService: ModalService,
-  ) {}
-
-  ngOnInit(): void {
-    this.loading = true;
-    // this.products$ = this.productsService
-    //   .getAll()
-    //   //оператор tap не изменяет, не трансформирует данные, он добавляет функционал.
-    //   .pipe(tap(() => (this.loading = false)));
-    this.productsService.getAll().subscribe(() => (this.loading = false));
-  }
-}
+export class AppComponent {}
