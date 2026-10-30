@@ -1,21 +1,21 @@
-# [ivanChernyakov](https://www.youtube.com/@icherniakov)
+# ivanChernyakov
 
-Привет, я Иван Черняков!
+**Credits & acknowledgments**
 
-Frontend разработчик из Санкт-Петербурга с некоторой девиацией в Python.
+This project was coded line-by-line for practice and learning purposes, following the tutorial by [Ivan Chernyakov](https://www.youtube.com/@icherniakov).
 
-Помогал и продолжаю помогать людям устраиваться в IT и разбираться в том, как что работает.
+## courseForBeginners2024
 
-Создаю IT продукты в группе единомышленников. В том числе на заказ.
-
-Увлечен музыкой, особенно бритпопом.
-
-![logo](data/ivanChernyakovLogo.jpg)
-
-## courseForBeginners.
-
-Запускай своё путешествие в мир Angular с моим ПОЛНЫМ курсом для начинающих! За 5 часов вы освоите основы и продвинутые аспекты Angular, чтобы начать создавать мощные веб-приложения. Всё, что вам нужно, чтобы прыгнуть с головой в мир фронтенд разработки, ждёт вас здесь!
-
-Ссылка на видео курс: [YouTube](https://www.youtube.com/watch?v=BVIffUyYlUk&list=WL&index=2&t=6544s)
+- **Tutorial video:** [YouTube](https://www.youtube.com/watch?v=BVIffUyYlUk&list=WL&index=2&t=6544s)
+- **Design assets:** [Local zip archive](data/activeBox.zip)
 
 Все необходимые для прохождения курса ссылки собрал у себя в телеграм: [Telegram](https://t.me/kosmostars7403/25)
+
+## inWeb
+
+- **Author's resource:** [Official project platform](https://brainscloud.ru)
+- **Reference guide:** [HTML & CSS reference](https://htmlbase.ru)
+- **Favicon asset:** [Image file](https://brainscloud.ru/storage/app/media/PROFHTML/favicon.png)
+- **Favicon generator:** [RealFaviconGenerator](https://realfavicongenerator.net/)
+- **Gulp boilerplate:** [Remote zip archive](https://brainscloud.ru/storage/app/media/PROFHTML/gulp-skeleton.zip)
+- **Gulp boilerplate:** [Local zip archive](data/gulp-skeleton.zip)
