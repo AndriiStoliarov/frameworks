@@ -1,17 +1,10 @@
-# [vladilenMinin](https://www.youtube.com/@VladilenMinin)
+# vladilenMinin
 
-На моем канале вы найдете большое количество видео по Frontend разработке и языку программирования JavaScript. Основной фокус материалов на практичности и рассказе простыми словами, чтоб даже самым начинающим было понятно как устроен язык программирования JavaScript.
+**Credits & acknowledgments**
 
-Я уже 12 лет работаю в IT сфере Frontend разработчиком. За это время понял какие проблемы есть у начинающих, действующих и опытных программистов. А потому помимо обучающих материалов по программированию рассказываю про полезные инструменты и методики связанные с продуктивностью, здоровью, осознанностью, эффективностью и заработком денег в IT.
+This project was coded line-by-line for practice and learning purposes, following the tutorial by [Vladilen Minin](https://www.youtube.com/@VladilenMinin).
 
-Основал онлайн университет по Frontend разработке Result University.
+## quick-course-2022
 
-![logo](data/vladilenMininLogo.jpg)
-
-## quickCourse
-
-Angular 14. Быстрый курс 2022.
-
-Ссылка на видео курс: [YouTube](https://youtu.be/yCIti018Srw)
-
-Ссылка на проект: [GitHub](https://github.com/vladilenm/angular-fast-2022)
+- **Tutorial video:** [YouTube](https://youtu.be/yCIti018Srw)
+- **Course code:** [GitHub](https://github.com/vladilenm/angular-fast-2022)
