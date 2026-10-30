@@ -1,6 +1,4 @@
-# angular
-
-Learning materials, basic course, practice of Angular.
+# 🅰️ angular
 
 ## yuriSimonov
 
