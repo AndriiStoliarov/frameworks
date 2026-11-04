@@ -2,12 +2,12 @@
 
 ## yuriSimonov
 
-Basic course on Angular.
+Basic course on Angular
 
 ## ivanChernyakov
 
-Angular course for beginners.
+Angular course for beginners
 
 ## vladilenMinin
 
-Quick course on Angular.
+Quick course on Angular
